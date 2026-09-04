@@ -1,3 +1,4 @@
+import { MapPin, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { StatusBadge, Avatar } from '../../components/ui.jsx';
@@ -31,8 +32,8 @@ export default function StaffVisits() {
               <StatusBadge status={v.status} />
             </div>
             <div className="sv-card__info">
-              <div>📍 {v.address}</div>
-              <div>🕒 {v.scheduled}</div>
+              <div><MapPin size={13} strokeWidth={2} /> {v.address}</div>
+              <div><Clock size={13} strokeWidth={2} /> {v.scheduled}</div>
             </div>
             {next && (
               <button className="st-advance-btn" onClick={() => db.update('HOME_VISITS', v.id, { status: next })}>

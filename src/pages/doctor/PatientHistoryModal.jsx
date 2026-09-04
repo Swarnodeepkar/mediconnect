@@ -1,3 +1,4 @@
+import { Phone } from 'lucide-react';
 import { useCollection } from '../../data/store.js';
 import { Modal, StatusBadge } from '../../components/ui.jsx';
 import { formatDate } from '../../lib/format.js';
@@ -20,7 +21,7 @@ export default function PatientHistoryModal({ patient, onClose, doctorId }) {
     <Modal open={!!patient} onClose={onClose} title={patient.name} width={520}>
       <div className="cm-patient-strip">
         <span>{patient.age}y &middot; {patient.gender} &middot; {patient.bloodGroup}</span>
-        <span>📞 {patient.phone}</span>
+        <span><Phone size={13} strokeWidth={2} /> {patient.phone}</span>
       </div>
 
       <div className="cm-block">

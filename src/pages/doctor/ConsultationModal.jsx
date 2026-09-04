@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Phone, CheckCircle2 } from 'lucide-react';
 import { useCollection, db } from '../../data/store.js';
 import { Modal, Button, Field, Input, Textarea, StatusBadge, Badge, SegmentedControl } from '../../components/ui.jsx';
 import { formatDate, formatCurrency } from '../../lib/format.js';
@@ -62,7 +63,7 @@ export default function ConsultationModal({ appt, onClose }) {
     <Modal open={!!appt} onClose={handleClose} title={patient?.name || 'Consultation'} width={720}>
       {saved ? (
         <div className="pa-confirm">
-          <div className="pa-confirm__icon">✅</div>
+          <div className="pa-confirm__icon"><CheckCircle2 size={40} strokeWidth={1.8} /></div>
           <h4>Consultation Completed</h4>
           <p>Prescription and visit summary have been saved to {patient?.name}'s record.</p>
           <Button onClick={handleClose} className="pa-confirm__btn">Done</Button>
@@ -71,7 +72,7 @@ export default function ConsultationModal({ appt, onClose }) {
         <>
           <div className="cm-patient-strip">
             <span>{patient?.age}y &middot; {patient?.gender} &middot; {patient?.bloodGroup}</span>
-            <span>📞 {patient?.phone}</span>
+            <span><Phone size={13} strokeWidth={2} /> {patient?.phone}</span>
             <StatusBadge status={appt.status} />
           </div>
 

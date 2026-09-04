@@ -29,12 +29,16 @@
 }
 .pf-menu__item:last-child { border-bottom: none; }
 .pf-menu__item:hover { background: var(--surface-sunk); }
-.pf-menu__icon { font-size: 17px; width: 22px; text-align: center; }
+.pf-menu__icon { display: flex; align-items: center; justify-content: center; width: 22px; color: var(--ink-500); flex-shrink: 0; }
 .pf-menu__label { flex: 1; font-size: 13.5px; font-weight: 600; color: var(--text-heading); }
 .pf-menu__badge { width: 7px; height: 7px; border-radius: 50%; background: var(--danger-500); }
-.pf-menu__arrow { color: var(--ink-300); font-size: 17px; }
+.pf-menu__arrow { color: var(--ink-300); flex-shrink: 0; }
 
 .pf-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 1.5px solid var(--danger-500);
   background: var(--danger-50);
   color: var(--danger-600);

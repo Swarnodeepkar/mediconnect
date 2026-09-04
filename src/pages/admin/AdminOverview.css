@@ -4,24 +4,28 @@
 
 .ov-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 14px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .ov-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1.7fr 1fr;
   gap: 18px;
   margin-bottom: 18px;
+  align-items: start;
 }
 .ov-grid--bottom { grid-template-columns: 1.5fr 1fr; }
+.ov-grid--donuts { grid-template-columns: repeat(3, 1fr); }
 
 @media (max-width: 980px) {
-  .ov-grid, .ov-grid--bottom { grid-template-columns: 1fr; }
+  .ov-grid, .ov-grid--bottom, .ov-grid--donuts { grid-template-columns: 1fr; }
 }
 
-.ov-chart-card, .ov-queue-card, .ov-clinics-card, .ov-complaints-card {
+.ov-charts-col, .ov-side-col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+
+.ov-chart-card, .ov-clinics-card, .ov-complaints-card, .ov-panel-card, .ov-donut-card {
   padding: 20px 22px;
   min-width: 0;
 }
@@ -46,19 +50,6 @@
 }
 .ov-link:hover { text-decoration: underline; }
 
-.ov-queue-list { display: flex; flex-direction: column; gap: 4px; max-height: 320px; overflow-y: auto; }
-.ov-queue-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 4px;
-  border-bottom: 1px solid var(--border);
-}
-.ov-queue-item:last-child { border-bottom: none; }
-.ov-queue-body { flex: 1; min-width: 0; }
-.ov-queue-name { font-size: 13.5px; font-weight: 600; color: var(--text-heading); }
-.ov-queue-meta { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-
 .ov-clinic-cell { display: flex; align-items: center; gap: 9px; font-weight: 600; color: var(--text-heading); }
 .ov-clinic-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .ov-ok { color: var(--ink-300); }
@@ -76,3 +67,82 @@
 .ov-complaint-meta { font-size: 12px; color: var(--text-muted); }
 
 .ov-empty { padding: 24px 0; text-align: center; color: var(--text-muted); font-size: 13.5px; }
+
+/* Quick Actions */
+.ov-quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ov-quick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-heading);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.ov-quick:hover { border-color: var(--border-strong); background: var(--surface-sunk); }
+.ov-quick__icon {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ov-quick__icon--brand { background: var(--brand-50); color: var(--brand-600); }
+.ov-quick__icon--success { background: var(--success-50); color: var(--success-600); }
+.ov-quick__icon--warn { background: var(--warn-50); color: var(--warn-600); }
+.ov-quick__icon--danger { background: var(--danger-50); color: var(--danger-600); }
+.ov-quick__icon--purple { background: #f3eeff; color: #7c5cff; }
+
+/* Alerts */
+.ov-alert-list { display: flex; flex-direction: column; gap: 4px; }
+.ov-alert-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+}
+.ov-alert-row:last-child { border-bottom: none; }
+.ov-alert-row__icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ov-alert-row__icon--danger { background: var(--danger-50); color: var(--danger-600); }
+.ov-alert-row__icon--warn { background: var(--warn-50); color: var(--warn-600); }
+.ov-alert-row__icon--brand { background: var(--brand-50); color: var(--brand-600); }
+.ov-alert-row__icon--purple { background: #f3eeff; color: #7c5cff; }
+
+/* Donut cards */
+.ov-donut-legend { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.ov-donut-legend__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.ov-donut-legend__dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.ov-donut-legend__label { flex: 1; color: var(--text); }
+.ov-donut-legend__value { font-weight: 700; color: var(--text-heading); }
+.ov-donut-legend__total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-heading);
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+}

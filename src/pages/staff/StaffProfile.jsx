@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Wallet, CalendarCheck, Building2, HelpCircle, ChevronRight, Power } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
-import { Avatar, Modal, Badge } from '../../components/ui.jsx';
+import { Avatar, Modal, Badge, StatusBadge } from '../../components/ui.jsx';
 import { formatCurrency, formatDate } from '../../lib/format.js';
 import '../patient/PatientProfile.css';
 import './StaffProfile.css';
 
 const MENU = [
-  { icon: '💰', label: 'Payslips & Salary' },
-  { icon: '📆', label: 'Attendance History' },
-  { icon: '🏥', label: 'Branch Assignment' },
-  { icon: '❓', label: 'Help & Support' },
+  { icon: Wallet, label: 'Payslips & Salary' },
+  { icon: CalendarCheck, label: 'Attendance History' },
+  { icon: Building2, label: 'Branch Assignment' },
+  { icon: HelpCircle, label: 'Help & Support' },
 ];
 
 export default function StaffProfile() {
@@ -40,14 +41,16 @@ export default function StaffProfile() {
       <div className="pf-menu">
         {MENU.map((m) => (
           <button key={m.label} className="pf-menu__item" onClick={() => setOpenSheet(m.label)}>
-            <span className="pf-menu__icon">{m.icon}</span>
+            <span className="pf-menu__icon"><m.icon size={17} strokeWidth={2} /></span>
             <span className="pf-menu__label">{m.label}</span>
-            <span className="pf-menu__arrow">›</span>
+            <ChevronRight size={17} strokeWidth={2.2} className="pf-menu__arrow" />
           </button>
         ))}
       </div>
 
-      <button className="pf-logout" onClick={() => { logout(); navigate('/login'); }}>Switch Role / Logout</button>
+      <button className="pf-logout" onClick={() => { logout(); navigate('/login'); }}>
+        <Power size={14} strokeWidth={2.2} /> Switch Role / Logout
+      </button>
 
       <Modal open={openSheet === 'Payslips & Salary'} onClose={() => setOpenSheet(null)} title="Payslips" width={420}>
         <div className="sp-payslip-list">
@@ -55,7 +58,7 @@ export default function StaffProfile() {
             <div className="sp-payslip" key={p.id}>
               <div className="sp-payslip__top">
                 <span className="sp-payslip__month">{p.month}</span>
-                <Badge tone="success">{p.status}</Badge>
+                <StatusBadge status={p.status} />
               </div>
               <div className="sp-payslip__net">{formatCurrency(p.netPay)}</div>
               <div className="sp-payslip__breakdown">

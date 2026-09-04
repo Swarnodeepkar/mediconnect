@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { LEAVE_BALANCE } from '../../data/seed.js';
@@ -74,7 +75,7 @@ function ApplyLeaveModal({ open, onClose, staffId }) {
     <Modal open={open} onClose={handleClose} title={submitted ? 'Request Sent' : 'Apply for Leave'} width={400}>
       {submitted ? (
         <div className="pa-confirm">
-          <div className="pa-confirm__icon">✅</div>
+          <div className="pa-confirm__icon"><CheckCircle2 size={40} strokeWidth={1.8} /></div>
           <h4>Leave Request Submitted</h4>
           <p>Your manager will review this shortly. You'll be notified once it's approved.</p>
           <Button onClick={handleClose} className="pa-confirm__btn">Done</Button>

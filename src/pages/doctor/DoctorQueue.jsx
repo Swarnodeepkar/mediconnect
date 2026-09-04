@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Hourglass, Stethoscope, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { Avatar, StatusBadge, Button, StatTile } from '../../components/ui.jsx';
@@ -42,9 +43,9 @@ export default function DoctorQueue() {
       </div>
 
       <div className="ap-stats-row">
-        <StatTile label="Waiting" value={waiting} icon="⏳" />
-        <StatTile label="In Consultation" value={inProgress} icon="🩺" tone="neutral" />
-        <StatTile label="Completed" value={done} icon="✅" tone="positive" />
+        <StatTile label="Waiting" value={waiting} icon={Hourglass} iconTone="warn" />
+        <StatTile label="In Consultation" value={inProgress} icon={Stethoscope} iconTone="brand" tone="neutral" />
+        <StatTile label="Completed" value={done} icon={CheckCircle2} iconTone="success" tone="positive" />
       </div>
 
       <div className="dq-list">

@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Bell, Flag, Building2, Lock, HelpCircle, ChevronRight, Power, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { Avatar, Modal, Button, Field, Select, Textarea, Badge } from '../../components/ui.jsx';
 import './PatientProfile.css';
 
 const MENU = [
-  { icon: '🔔', label: 'Notifications' },
-  { icon: '⚑', label: 'Raise a Complaint' },
-  { icon: '🏥', label: 'My Clinic & Family' },
-  { icon: '🔒', label: 'Privacy & Security' },
-  { icon: '❓', label: 'Help & Support' },
+  { icon: Bell, label: 'Notifications' },
+  { icon: Flag, label: 'Raise a Complaint' },
+  { icon: Building2, label: 'My Clinic & Family' },
+  { icon: Lock, label: 'Privacy & Security' },
+  { icon: HelpCircle, label: 'Help & Support' },
 ];
 
 export default function PatientProfile() {
@@ -39,15 +40,17 @@ export default function PatientProfile() {
       <div className="pf-menu">
         {MENU.map((m) => (
           <button key={m.label} className="pf-menu__item" onClick={() => setOpenSheet(m.label)}>
-            <span className="pf-menu__icon">{m.icon}</span>
+            <span className="pf-menu__icon"><m.icon size={17} strokeWidth={2} /></span>
             <span className="pf-menu__label">{m.label}</span>
             {m.label === 'Notifications' && myNotifications.some((n) => !n.read) && <span className="pf-menu__badge" />}
-            <span className="pf-menu__arrow">›</span>
+            <ChevronRight size={17} strokeWidth={2.2} className="pf-menu__arrow" />
           </button>
         ))}
       </div>
 
-      <button className="pf-logout" onClick={() => { logout(); navigate('/login'); }}>Switch Role / Logout</button>
+      <button className="pf-logout" onClick={() => { logout(); navigate('/login'); }}>
+        <Power size={14} strokeWidth={2.2} /> Switch Role / Logout
+      </button>
 
       <NotificationsSheet open={openSheet === 'Notifications'} onClose={() => setOpenSheet(null)} notifications={myNotifications} patientId={user.patientId} />
       <ComplaintSheet open={openSheet === 'Raise a Complaint'} onClose={() => setOpenSheet(null)} patientId={user.patientId} clinicId={user.clinicId} />
@@ -105,7 +108,7 @@ function ComplaintSheet({ open, onClose, patientId, clinicId }) {
     <Modal open={open} onClose={handleClose} title="Raise a Complaint" width={420}>
       {submitted ? (
         <div className="pa-confirm">
-          <div className="pa-confirm__icon">✅</div>
+          <div className="pa-confirm__icon"><CheckCircle2 size={40} strokeWidth={1.8} /></div>
           <h4>Complaint Submitted</h4>
           <p>Our team will review this and get back to you. You can track its status from the admin&apos;s complaint log.</p>
           <Button onClick={handleClose} className="pa-confirm__btn">Done</Button>

@@ -10,6 +10,13 @@ import AdminStaff from './pages/admin/AdminStaff.jsx';
 import AdminComplaints from './pages/admin/AdminComplaints.jsx';
 import AdminHomeVisits from './pages/admin/AdminHomeVisits.jsx';
 import AdminReports from './pages/admin/AdminReports.jsx';
+import AdminBilling from './pages/admin/AdminBilling.jsx';
+import AdminPayroll from './pages/admin/AdminPayroll.jsx';
+import AdminClinical from './pages/admin/AdminClinical.jsx';
+import AdminUsers from './pages/admin/AdminUsers.jsx';
+import AdminAuditLogs from './pages/admin/AdminAuditLogs.jsx';
+import AdminNotifications from './pages/admin/AdminNotifications.jsx';
+import AdminSettings from './pages/admin/AdminSettings.jsx';
 import PatientLayout from './pages/patient/PatientLayout.jsx';
 import PatientHome from './pages/patient/PatientHome.jsx';
 import PatientAppointments from './pages/patient/PatientAppointments.jsx';
@@ -56,6 +63,13 @@ export default function App() {
         <Route path="home-visits" element={<AdminHomeVisits />} />
         <Route path="complaints" element={<AdminComplaints />} />
         <Route path="reports" element={<AdminReports />} />
+        <Route path="clinical" element={<AdminClinical />} />
+        <Route path="billing" element={<AdminBilling />} />
+        <Route path="payroll" element={<AdminPayroll />} />
+        <Route path="users" element={<AdminUsers />} />
+        <Route path="audit-logs" element={<AdminAuditLogs />} />
+        <Route path="notifications" element={<AdminNotifications />} />
+        <Route path="settings" element={<AdminSettings />} />
       </Route>
 
       <Route

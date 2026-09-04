@@ -11,3 +11,4 @@
 .sv-card__name { font-weight: 700; font-size: 13.5px; color: var(--text-heading); }
 .sv-card__service { font-size: 12px; color: var(--text-muted); }
 .sv-card__info { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--text-muted); padding-top: 10px; border-top: 1px solid var(--border); }
+.sv-card__info div { display: flex; align-items: center; gap: 6px; }

@@ -9,6 +9,13 @@
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
+.cm-patient-strip span { display: inline-flex; align-items: center; gap: 6px; }
+
+.pa-confirm { text-align: center; padding: 10px 0; }
+.pa-confirm__icon { display: flex; justify-content: center; color: var(--success-500); margin-bottom: 10px; }
+.pa-confirm h4 { font-size: 17px; margin-bottom: 6px; }
+.pa-confirm p { color: var(--text-muted); font-size: 13.5px; margin-bottom: 20px; }
+.pa-confirm__btn { width: 100%; }
 
 .cm-tab-body { margin-top: 18px; max-height: 440px; overflow-y: auto; padding-right: 4px; }
 

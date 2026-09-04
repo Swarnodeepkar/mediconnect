@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Children, isValidElement } from 'react';
+import { ChevronDown, Check } from 'lucide-react';
 import { initials } from '../lib/format.js';
 import './ui.css';
 
@@ -23,7 +25,7 @@ const STATUS_TONE = {
   Completed: 'success', Resolved: 'success', Present: 'success', Active: 'success', 'Report Ready': 'success', Closed: 'success', Paid: 'success', Approved: 'success',
   'In Progress': 'info', Assigned: 'info', Processing: 'info', Scheduled: 'info', 'Sample Collected': 'info',
   Waiting: 'warn', Late: 'warn', Submitted: 'warn', Pending: 'warn', 'On Leave': 'warn', Due: 'warn',
-  Absent: 'danger', High: 'danger', Overdue: 'danger', Cancelled: 'danger', Rejected: 'danger',
+  Absent: 'danger', High: 'danger', Overdue: 'danger', Cancelled: 'danger', Rejected: 'danger', Refunded: 'danger',
   Medium: 'warn', Low: 'neutral',
 };
 
@@ -59,12 +61,16 @@ function stringToColor(str) {
   return palette[Math.abs(hash) % palette.length];
 }
 
-export function StatTile({ label, value, delta, tone = 'neutral', icon }) {
+export function StatTile({ label, value, delta, tone = 'neutral', icon: Icon, iconTone = 'brand' }) {
   return (
     <Card className="mc-stat">
       <div className="mc-stat__top">
+        {Icon && (
+          <span className={`mc-stat__icon mc-stat__icon--${iconTone}`}>
+            <Icon size={18} strokeWidth={2} />
+          </span>
+        )}
         <span className="mc-stat__label">{label}</span>
-        {icon && <span className="mc-stat__icon">{icon}</span>}
       </div>
       <div className="mc-stat__value">{value}</div>
       {delta && (
@@ -165,14 +171,111 @@ export function Field({ label, children, hint }) {
   );
 }
 
-export function Select(props) {
-  return <select className="mc-input" {...props} />;
+export function Select({ value, onChange, children, className = '', style, required, disabled, placeholder, id, name }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  const options = useMemo(() => {
+    return Children.toArray(children)
+      .filter((c) => isValidElement(c) && c.type === 'option')
+      .map((c) => ({
+        value: c.props.value !== undefined ? String(c.props.value) : String(c.props.children),
+        label: c.props.children,
+        disabled: !!c.props.disabled,
+      }));
+  }, [children]);
+
+  const selected = options.find((o) => o.value === String(value));
+
+  useEffect(() => {
+    if (!open) return;
+    function onDocClick(e) {
+      if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    document.addEventListener('mousedown', onDocClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDocClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  function fireChange(nextValue) {
+    onChange?.({ target: { value: nextValue, name, id } });
+  }
+
+  function handlePick(opt) {
+    if (opt.disabled) return;
+    fireChange(opt.value);
+    setOpen(false);
+  }
+
+  function handleTriggerKeyDown(e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      setOpen(true);
+    }
+  }
+
+  return (
+    <div className={`mc-select ${disabled ? 'is-disabled' : ''} ${className}`} style={style} ref={rootRef}>
+      {/* Hidden native select keeps forms/required-field semantics and validation working */}
+      <select
+        className="mc-select__native"
+        value={value ?? ''}
+        onChange={(e) => fireChange(e.target.value)}
+        required={required}
+        disabled={disabled}
+        name={name}
+        id={id}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        {children}
+      </select>
+
+      <button
+        type="button"
+        className={`mc-select__trigger ${open ? 'is-open' : ''}`}
+        onClick={() => !disabled && setOpen((v) => !v)}
+        onKeyDown={handleTriggerKeyDown}
+        disabled={disabled}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className={`mc-select__value ${!selected ? 'is-placeholder' : ''}`}>
+          {selected ? selected.label : (placeholder || 'Select…')}
+        </span>
+        <ChevronDown size={15} strokeWidth={2.2} className="mc-select__chevron" />
+      </button>
+
+      {open && (
+        <ul className="mc-select__menu" role="listbox">
+          {options.map((opt) => (
+            <li
+              key={opt.value}
+              role="option"
+              aria-selected={opt.value === String(value)}
+              className={`mc-select__option ${opt.value === String(value) ? 'is-selected' : ''} ${opt.disabled ? 'is-disabled' : ''}`}
+              onClick={() => handlePick(opt)}
+            >
+              <span>{opt.label}</span>
+              {opt.value === String(value) && <Check size={14} strokeWidth={2.4} className="mc-select__check" />}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
-export function Input(props) {
-  return <input className="mc-input" {...props} />;
+export function Input({ className = '', ...rest }) {
+  return <input className={`mc-input ${className}`} {...rest} />;
 }
 
-export function Textarea(props) {
-  return <textarea className="mc-input" {...props} />;
+export function Textarea({ className = '', ...rest }) {
+  return <textarea className={`mc-input ${className}`} {...rest} />;
 }

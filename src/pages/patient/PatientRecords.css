@@ -17,8 +17,8 @@
   width: 38px; height: 38px;
   border-radius: 10px;
   background: var(--brand-50);
+  color: var(--brand-600);
   display: flex; align-items: center; justify-content: center;
-  font-size: 17px;
   flex-shrink: 0;
 }
 .pr-card__body { flex: 1; min-width: 0; }
@@ -40,6 +40,6 @@
 .pr-med__detail { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
 .pr-lab-report { text-align: center; padding: 10px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.pr-lab-report__icon { font-size: 40px; }
+.pr-lab-report__icon { display: flex; justify-content: center; color: var(--brand-600); }
 .pr-lab-report p { font-size: 13.5px; color: var(--text-muted); }
 .pr-lab-report__note { font-size: 12px; color: var(--ink-400); margin-top: 6px; }

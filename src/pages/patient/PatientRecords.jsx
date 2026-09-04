@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Pill, FlaskConical, FileText } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
 import { SegmentedControl, StatusBadge, Modal, Badge } from '../../components/ui.jsx';
@@ -40,7 +41,7 @@ export default function PatientRecords() {
             const d = doctorById(rx.doctorId);
             return (
               <div className="pr-card" key={rx.id} onClick={() => setActiveRx(rx)}>
-                <div className="pr-card__icon">💊</div>
+                <div className="pr-card__icon"><Pill size={17} strokeWidth={2} /></div>
                 <div className="pr-card__body">
                   <div className="pr-card__title">{d?.name}</div>
                   <div className="pr-card__sub">{rx.diagnosis}</div>
@@ -57,7 +58,7 @@ export default function PatientRecords() {
           {myLabs.length === 0 && <div className="pr-empty">No lab tests on file yet.</div>}
           {myLabs.map((l) => (
             <div className="pr-card" key={l.id} onClick={() => l.status === 'Report Ready' && setActiveLab(l)}>
-              <div className="pr-card__icon">🧪</div>
+              <div className="pr-card__icon"><FlaskConical size={17} strokeWidth={2} /></div>
               <div className="pr-card__body">
                 <div className="pr-card__title">{l.test}</div>
                 <div className="pr-card__meta">{formatDate(l.date)}</div>
@@ -116,7 +117,7 @@ function LabModal({ lab, onClose }) {
   return (
     <Modal open={!!lab} onClose={onClose} title={lab.test} width={400}>
       <div className="pr-lab-report">
-        <div className="pr-lab-report__icon">📄</div>
+        <div className="pr-lab-report__icon"><FileText size={34} strokeWidth={1.6} /></div>
         <p>Report generated on {formatDate(lab.date)}.</p>
         <Badge tone="success">Report Ready</Badge>
         <p className="pr-lab-report__note">In a production build, this would display the full report PDF or structured results, downloadable and shareable from here.</p>

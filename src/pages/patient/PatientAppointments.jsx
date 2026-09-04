@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { MapPin, CheckCircle2, Star } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
-import { Avatar, Badge, StatusBadge, SegmentedControl, Modal, Button } from '../../components/ui.jsx';
+import { Avatar, StatusBadge, SegmentedControl, Modal, Button } from '../../components/ui.jsx';
 import { formatDate, formatTime12, formatCurrency } from '../../lib/format.js';
 import './PatientAppointments.css';
 
@@ -64,7 +65,7 @@ export default function PatientAppointments() {
                   <StatusBadge status={a.status} />
                 </div>
                 <div className="pa-card__dept">{d?.dept} &middot; {a.service}</div>
-                <div className="pa-card__meta">📍 {c?.name} &middot; {formatDate(a.date)}, {formatTime12(a.time)}</div>
+                <div className="pa-card__meta"><MapPin size={12} strokeWidth={2} /> {c?.name} &middot; {formatDate(a.date)}, {formatTime12(a.time)}</div>
               </div>
             </div>
           );
@@ -105,7 +106,7 @@ function BookModal({ open, onClose, clinics, doctors, patientId, homeClinicId })
     <Modal open={open} onClose={handleClose} title={confirmed ? 'Booking Confirmed' : 'Book Appointment'} width={420}>
       {confirmed ? (
         <div className="pa-confirm">
-          <div className="pa-confirm__icon">✅</div>
+          <div className="pa-confirm__icon"><CheckCircle2 size={40} strokeWidth={1.8} /></div>
           <h4>You're all set!</h4>
           <p>{doctor?.name} &middot; {formatDate(date)}, {formatTime12(time)}</p>
           <Button onClick={handleClose} className="pa-confirm__btn">Done</Button>
@@ -134,7 +135,7 @@ function BookModal({ open, onClose, clinics, doctors, patientId, homeClinicId })
               {eligibleDoctors.map((d) => (
                 <button key={d.id} className={`pa-option ${doctorId === d.id ? 'is-selected' : ''}`} onClick={() => setDoctorId(d.id)}>
                   <div className="pa-option__title">{d.name}</div>
-                  <div className="pa-option__sub">{d.dept} &middot; {d.experience} yrs exp &middot; ⭐ {d.rating}</div>
+                  <div className="pa-option__sub">{d.dept} &middot; {d.experience} yrs exp &middot; <Star size={11} strokeWidth={2} fill="currentColor" style={{ verticalAlign: -1 }} /> {d.rating}</div>
                   <div className="pa-option__fee">{formatCurrency(d.consultFee)}</div>
                 </button>
               ))}

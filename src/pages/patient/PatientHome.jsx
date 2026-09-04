@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { CalendarDays, FlaskConical, Pill, IndianRupee, MapPin, Clock, ChevronRight, FileText } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
-import { Avatar, Badge } from '../../components/ui.jsx';
+import { Avatar } from '../../components/ui.jsx';
 import { formatDate, formatTime12 } from '../../lib/format.js';
 import './PatientHome.css';
 
 const QUICK_ACTIONS = [
-  { icon: '📅', label: 'Book Visit', to: '/patient/appointments?book=1' },
-  { icon: '🧪', label: 'Lab Reports', to: '/patient/records?tab=labs' },
-  { icon: '💊', label: 'Prescriptions', to: '/patient/records?tab=rx' },
-  { icon: '₹', label: 'Pay Bills', to: '/patient/payments' },
+  { icon: CalendarDays, label: 'Book Visit', to: '/patient/appointments?book=1' },
+  { icon: FlaskConical, label: 'Lab Reports', to: '/patient/records?tab=labs' },
+  { icon: Pill, label: 'Prescriptions', to: '/patient/records?tab=rx' },
+  { icon: IndianRupee, label: 'Pay Bills', to: '/patient/payments' },
 ];
 
 export default function PatientHome() {
@@ -47,8 +48,8 @@ export default function PatientHome() {
             </div>
           </div>
           <div className="ph-appt-card__meta">
-            <span>📍 {clinicById(upcoming.clinicId)?.name}</span>
-            <span>🕒 {formatDate(upcoming.date)}, {formatTime12(upcoming.time)}</span>
+            <span><MapPin size={13} strokeWidth={2} /> {clinicById(upcoming.clinicId)?.name}</span>
+            <span><Clock size={13} strokeWidth={2} /> {formatDate(upcoming.date)}, {formatTime12(upcoming.time)}</span>
           </div>
         </div>
       ) : (
@@ -61,7 +62,7 @@ export default function PatientHome() {
       <div className="ph-quick-grid">
         {QUICK_ACTIONS.map((a) => (
           <button key={a.label} className="ph-quick" onClick={() => navigate(a.to)}>
-            <span className="ph-quick__icon">{a.icon}</span>
+            <span className="ph-quick__icon"><a.icon size={19} strokeWidth={2} /></span>
             <span className="ph-quick__label">{a.label}</span>
           </button>
         ))}
@@ -71,16 +72,16 @@ export default function PatientHome() {
         <div className="ph-alerts">
           {readyReports > 0 && (
             <div className="ph-alert ph-alert--info" onClick={() => navigate('/patient/records?tab=labs')}>
-              <span>🧪</span>
+              <FlaskConical size={16} strokeWidth={2} />
               <span>{readyReports} lab report{readyReports > 1 ? 's' : ''} ready to view</span>
-              <span className="ph-alert__arrow">→</span>
+              <ChevronRight size={15} strokeWidth={2.2} className="ph-alert__arrow" />
             </div>
           )}
           {dueBills.length > 0 && (
             <div className="ph-alert ph-alert--warn" onClick={() => navigate('/patient/payments')}>
-              <span>₹</span>
+              <IndianRupee size={16} strokeWidth={2} />
               <span>{dueBills.length} bill{dueBills.length > 1 ? 's' : ''} pending payment</span>
-              <span className="ph-alert__arrow">→</span>
+              <ChevronRight size={15} strokeWidth={2.2} className="ph-alert__arrow" />
             </div>
           )}
         </div>
@@ -91,6 +92,9 @@ export default function PatientHome() {
         <button onClick={() => navigate('/patient/profile')}>See all</button>
       </div>
       <div className="ph-notif-list">
+        {myNotifications.length === 0 && (
+          <div className="ph-notif-empty"><FileText size={20} strokeWidth={1.8} /><span>No notifications yet.</span></div>
+        )}
         {myNotifications.map((n) => (
           <div key={n.id} className={`ph-notif ${!n.read ? 'is-unread' : ''}`}>
             <div className="ph-notif__title">{n.title}</div>

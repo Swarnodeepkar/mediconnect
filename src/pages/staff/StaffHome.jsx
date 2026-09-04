@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MapPin } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { Badge } from '../../components/ui.jsx';
@@ -50,7 +51,7 @@ export default function StaffHome() {
           <span className={`sh-attend-dot ${checkedIn ? 'is-on' : ''}`} />
           {checkedIn ? 'Checked in' : myAttendance?.checkOut ? 'Shift completed' : 'Not checked in'}
         </div>
-        <div className="sh-attend-card__clinic">📍 {myClinic?.name}</div>
+        <div className="sh-attend-card__clinic"><MapPin size={13} strokeWidth={2} /> {myClinic?.name}</div>
 
         {myAttendance?.checkIn && (
           <div className="sh-attend-times">
@@ -61,7 +62,9 @@ export default function StaffHome() {
 
         {!myAttendance?.checkOut && (
           <button className="sh-check-btn" onClick={handleCheckToggle} disabled={locating}>
-            {locating ? 'Verifying location…' : checkedIn ? '📍 Check Out' : '📍 Check In (GPS)'}
+            {locating ? 'Verifying location…' : (
+              <><MapPin size={15} strokeWidth={2.2} /> {checkedIn ? 'Check Out' : 'Check In (GPS)'}</>
+            )}
           </button>
         )}
       </div>

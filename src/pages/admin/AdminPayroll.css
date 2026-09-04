@@ -1,0 +1,52 @@
+.ay-summary-card { padding: 20px 22px; }
+
+.ay-role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.ay-role-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 15px;
+  background: var(--surface-sunk);
+  border-radius: var(--radius-md);
+}
+.ay-role-row__name { font-weight: 700; font-size: 13.5px; color: var(--text-heading); }
+.ay-role-row__count { font-size: 11.5px; color: var(--text-muted); }
+.ay-role-row__total { font-family: var(--heading); font-weight: 800; font-size: 16px; color: var(--brand-700); margin-top: 4px; }
+
+.ay-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.ay-modal-head__name { font-weight: 700; font-size: 15px; }
+.ay-modal-head__role { font-size: 12.5px; color: var(--text-muted); margin-top: 1px; }
+.ay-modal-head .mc-badge { margin-left: auto; }
+
+.ay-breakdown { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.ay-breakdown__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 2px;
+  font-size: 13.5px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.ay-breakdown__row--total {
+  border-bottom: none;
+  border-top: 1.5px solid var(--border-strong);
+  margin-top: 4px;
+  padding-top: 12px;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--text-heading);
+  font-family: var(--heading);
+}
+
+.ay-paid-note { font-size: 12.5px; color: var(--text-muted); text-align: center; margin-bottom: 4px; }

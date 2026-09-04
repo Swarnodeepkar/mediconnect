@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PartyPopper, Smartphone, CreditCard, Landmark, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection, db } from '../../data/store.js';
 import { Modal, Button, Badge, SegmentedControl } from '../../components/ui.jsx';
@@ -42,7 +43,7 @@ export default function PatientPayments() {
       <div className="pp-list">
         {tab === 'due' && (
           due.length === 0
-            ? <div className="pp-empty">You're all caught up — no pending bills. 🎉</div>
+            ? <div className="pp-empty"><PartyPopper size={18} strokeWidth={1.8} style={{ verticalAlign: -3, marginRight: 6 }} />You're all caught up — no pending bills.</div>
             : due.map((p) => (
               <div className="pp-card" key={p.id}>
                 <div className="pp-card__body">
@@ -80,9 +81,9 @@ export default function PatientPayments() {
             <div className="pp-pay-modal__amount">{formatCurrency(payingItem.amount)}</div>
             <div className="pp-pay-modal__desc">{payingItem.description}</div>
             <div className="pp-method-list">
-              <div className="pp-method is-selected">📱 UPI — GPay, PhonePe, Paytm</div>
-              <div className="pp-method">💳 Credit / Debit Card</div>
-              <div className="pp-method">🏦 Net Banking</div>
+              <div className="pp-method is-selected"><Smartphone size={16} strokeWidth={2} /> UPI — GPay, PhonePe, Paytm</div>
+              <div className="pp-method"><CreditCard size={16} strokeWidth={2} /> Credit / Debit Card</div>
+              <div className="pp-method"><Landmark size={16} strokeWidth={2} /> Net Banking</div>
             </div>
             <Button onClick={confirmPayment} className="pp-pay-modal__btn">Pay {formatCurrency(payingItem.amount)}</Button>
           </div>
@@ -92,7 +93,7 @@ export default function PatientPayments() {
       <Modal open={!!receiptItem} onClose={() => setReceiptId(null)} title="Receipt" width={380}>
         {receiptItem && (
           <div className="pp-receipt">
-            <div className="pp-receipt__check">✅</div>
+            <div className="pp-receipt__check"><CheckCircle2 size={36} strokeWidth={1.8} /></div>
             <div className="pp-receipt__amount">{formatCurrency(receiptItem.amount)}</div>
             <div className="pp-receipt__desc">{receiptItem.description}</div>
             <div className="ap-detail-grid" style={{ marginTop: 18, textAlign: 'left' }}>

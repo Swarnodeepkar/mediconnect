@@ -160,9 +160,31 @@ export const TASKS = [
 ];
 
 export const PAYSLIPS = [
-  { id: 'ps1', staffId: 'st1', month: 'August 2026', basic: 28000, overtime: 1500, incentives: 1000, deductions: 800, netPay: 29700, status: 'Paid', paidOn: '2026-09-01' },
-  { id: 'ps2', staffId: 'st1', month: 'July 2026', basic: 28000, overtime: 900, incentives: 500, deductions: 800, netPay: 28600, status: 'Paid', paidOn: '2026-08-01' },
-  { id: 'ps3', staffId: 'st1', month: 'June 2026', basic: 28000, overtime: 1200, incentives: 0, deductions: 800, netPay: 28400, status: 'Paid', paidOn: '2026-07-01' },
+  // September 2026 — current month, org-wide
+  { id: 'ps_st1_sep', staffId: 'st1', month: 'September 2026', basic: 28000, overtime: 1500, incentives: 1000, deductions: 800, netPay: 29700, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st2_sep', staffId: 'st2', month: 'September 2026', basic: 24000, overtime: 600, incentives: 0, deductions: 650, netPay: 23950, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st3_sep', staffId: 'st3', month: 'September 2026', basic: 26000, overtime: 900, incentives: 500, deductions: 700, netPay: 26700, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st4_sep', staffId: 'st4', month: 'September 2026', basic: 25000, overtime: 1100, incentives: 0, deductions: 700, netPay: 25400, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st5_sep', staffId: 'st5', month: 'September 2026', basic: 23000, overtime: 0, incentives: 0, deductions: 3200, netPay: 19800, status: 'Processing', paidOn: null },
+  { id: 'ps_st6_sep', staffId: 'st6', month: 'September 2026', basic: 27000, overtime: 700, incentives: 800, deductions: 750, netPay: 27750, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st7_sep', staffId: 'st7', month: 'September 2026', basic: 26000, overtime: 400, incentives: 0, deductions: 700, netPay: 25700, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st8_sep', staffId: 'st8', month: 'September 2026', basic: 25000, overtime: 1300, incentives: 0, deductions: 700, netPay: 25600, status: 'Pending', paidOn: null },
+  { id: 'ps_st9_sep', staffId: 'st9', month: 'September 2026', basic: 32000, overtime: 0, incentives: 1200, deductions: 900, netPay: 32300, status: 'Paid', paidOn: '2026-09-01' },
+  { id: 'ps_st10_sep', staffId: 'st10', month: 'September 2026', basic: 24000, overtime: 500, incentives: 0, deductions: 650, netPay: 23850, status: 'Paid', paidOn: '2026-09-01' },
+  // August 2026 — prior month, org-wide
+  { id: 'ps_st1_aug', staffId: 'st1', month: 'August 2026', basic: 28000, overtime: 1500, incentives: 1000, deductions: 800, netPay: 29700, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st2_aug', staffId: 'st2', month: 'August 2026', basic: 24000, overtime: 400, incentives: 0, deductions: 650, netPay: 23750, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st3_aug', staffId: 'st3', month: 'August 2026', basic: 26000, overtime: 800, incentives: 0, deductions: 700, netPay: 26100, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st4_aug', staffId: 'st4', month: 'August 2026', basic: 25000, overtime: 900, incentives: 0, deductions: 700, netPay: 25200, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st5_aug', staffId: 'st5', month: 'August 2026', basic: 23000, overtime: 300, incentives: 0, deductions: 600, netPay: 22700, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st6_aug', staffId: 'st6', month: 'August 2026', basic: 27000, overtime: 500, incentives: 0, deductions: 750, netPay: 26750, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st7_aug', staffId: 'st7', month: 'August 2026', basic: 26000, overtime: 200, incentives: 0, deductions: 700, netPay: 25500, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st8_aug', staffId: 'st8', month: 'August 2026', basic: 25000, overtime: 1000, incentives: 500, deductions: 700, netPay: 25800, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st9_aug', staffId: 'st9', month: 'August 2026', basic: 32000, overtime: 0, incentives: 0, deductions: 900, netPay: 31100, status: 'Paid', paidOn: '2026-08-01' },
+  { id: 'ps_st10_aug', staffId: 'st10', month: 'August 2026', basic: 24000, overtime: 300, incentives: 0, deductions: 650, netPay: 23650, status: 'Paid', paidOn: '2026-08-01' },
+  // July 2026
+  { id: 'ps_st1_jul', staffId: 'st1', month: 'July 2026', basic: 28000, overtime: 900, incentives: 500, deductions: 800, netPay: 28600, status: 'Paid', paidOn: '2026-07-01' },
+  { id: 'ps_st9_jul', staffId: 'st9', month: 'July 2026', basic: 32000, overtime: 0, incentives: 0, deductions: 900, netPay: 31100, status: 'Paid', paidOn: '2026-07-01' },
 ];
 
 export const PAYMENTS = [
@@ -171,6 +193,22 @@ export const PAYMENTS = [
   { id: 'pay3', patientId: 'p1', clinicId: 'cl1', appointmentId: 'ap11', description: 'Cardiology Follow-up — Dr. Karan Mehta', category: 'Consultation', amount: 500, status: 'Due', date: '2026-09-06', method: null },
   { id: 'pay4', patientId: 'p1', clinicId: 'cl1', appointmentId: null, description: 'Pharmacy — Paracetamol, Cetirizine, ORS', category: 'Pharmacy', amount: 240, status: 'Paid', date: '2026-08-30', method: 'Cash' },
   { id: 'pay5', patientId: 'p1', clinicId: 'cl1', appointmentId: null, description: 'Full Body Health Checkup Package', category: 'Package', amount: 2499, status: 'Paid', date: '2026-08-10', method: 'Card' },
+  { id: 'pay6', patientId: 'p2', clinicId: 'cl1', appointmentId: 'ap2', description: 'Cardiology Consultation — Dr. Karan Mehta', category: 'Consultation', amount: 900, status: 'Paid', date: T, method: 'UPI' },
+  { id: 'pay7', patientId: 'p2', clinicId: 'cl1', appointmentId: 'lt2', description: 'Lipid Profile', category: 'Laboratory', amount: 480, status: 'Due', date: T, method: null },
+  { id: 'pay8', patientId: 'p9', clinicId: 'cl1', appointmentId: 'ap3', description: 'Follow-up Consultation — Dr. Ananya Rao', category: 'Consultation', amount: 300, status: 'Paid', date: T, method: 'Cash' },
+  { id: 'pay9', patientId: 'p3', clinicId: 'cl2', appointmentId: 'ap4', description: 'Orthopedic Consultation — Dr. Farhan Sheikh', category: 'Consultation', amount: 700, status: 'Paid', date: T, method: 'Card' },
+  { id: 'pay10', patientId: 'p3', clinicId: 'cl2', appointmentId: 'lt4', description: 'X-Ray Knee', category: 'Laboratory', amount: 850, status: 'Paid', date: T, method: 'Card' },
+  { id: 'pay11', patientId: 'p4', clinicId: 'cl2', appointmentId: 'ap5', description: 'Pediatric Checkup — Dr. Sneha Iyer', category: 'Consultation', amount: 450, status: 'Due', date: T, method: null },
+  { id: 'pay12', patientId: 'p10', clinicId: 'cl2', appointmentId: 'ap6', description: 'Vaccination — Dr. Sneha Iyer', category: 'Consultation', amount: 350, status: 'Paid', date: T, method: 'UPI' },
+  { id: 'pay13', patientId: 'p5', clinicId: 'cl3', appointmentId: 'ap7', description: 'Gynecology Consultation — Dr. Priya Nair', category: 'Consultation', amount: 650, status: 'Paid', date: T, method: 'UPI' },
+  { id: 'pay14', patientId: 'p5', clinicId: 'cl3', appointmentId: 'lt3', description: 'Thyroid Panel', category: 'Laboratory', amount: 720, status: 'Paid', date: T, method: 'UPI' },
+  { id: 'pay15', patientId: 'p6', clinicId: 'cl3', appointmentId: 'ap8', description: 'Skin Consultation — Dr. Ravi Shastri', category: 'Consultation', amount: 550, status: 'Due', date: T, method: null },
+  { id: 'pay16', patientId: 'p7', clinicId: 'cl4', appointmentId: 'ap9', description: 'ENT Consultation — Dr. Meera Pillai', category: 'Consultation', amount: 500, status: 'Paid', date: T, method: 'Cash' },
+  { id: 'pay17', patientId: 'p8', clinicId: 'cl4', appointmentId: 'ap10', description: 'Dental Checkup — Dr. Arjun Verma', category: 'Consultation', amount: 400, status: 'Due', date: T, method: null },
+  { id: 'pay18', patientId: 'p8', clinicId: 'cl4', appointmentId: 'lt5', description: 'ECG', category: 'Laboratory', amount: 380, status: 'Due', date: T, method: null },
+  { id: 'pay19', patientId: 'p7', clinicId: 'cl4', appointmentId: null, description: 'Pharmacy — Antibiotics course', category: 'Pharmacy', amount: 320, status: 'Paid', date: '2026-08-29', method: 'Cash' },
+  { id: 'pay20', patientId: 'p6', clinicId: 'cl3', appointmentId: null, description: 'Skin Care Package', category: 'Package', amount: 1899, status: 'Paid', date: '2026-08-22', method: 'Card' },
+  { id: 'pay21', patientId: 'p1', clinicId: 'cl1', appointmentId: null, description: 'Refund — Duplicate lab charge', category: 'Laboratory', amount: 150, status: 'Refunded', date: '2026-08-18', method: 'UPI' },
 ];
 
 export const USERS = [
@@ -178,4 +216,56 @@ export const USERS = [
   { id: 'u_doctor', role: 'doctor', name: 'Dr. Ananya Rao', title: 'General Medicine', avatar: 'AR', clinicId: 'cl1', doctorId: 'doc1' },
   { id: 'u_staff', role: 'staff', name: 'Lakshmi Menon', title: 'Nurse', avatar: 'LM', clinicId: 'cl1', staffId: 'st1' },
   { id: 'u_patient', role: 'patient', name: 'Rohan Desai', title: 'Patient', avatar: 'RD', clinicId: 'cl1', patientId: 'p1' },
+];
+
+// Platform-wide user & access directory (Users & Roles module) — broader than the 4 login personas above.
+export const PLATFORM_USERS = [
+  { id: 'pu1', name: 'Ritu Sharma', email: 'ritu.sharma@mediconnect.in', role: 'Super Admin', clinicId: null, status: 'Active', lastActive: '2026-09-04 09:10' },
+  { id: 'pu2', name: 'Dr. Ananya Rao', email: 'ananya.rao@mediconnect.in', role: 'Doctor', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-04 08:55' },
+  { id: 'pu3', name: 'Dr. Karan Mehta', email: 'karan.mehta@mediconnect.in', role: 'Doctor', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-03 17:40' },
+  { id: 'pu4', name: 'Dr. Sneha Iyer', email: 'sneha.iyer@mediconnect.in', role: 'Doctor', clinicId: 'cl2', status: 'Active', lastActive: '2026-09-04 09:02' },
+  { id: 'pu5', name: 'Dr. Priya Nair', email: 'priya.nair@mediconnect.in', role: 'Doctor', clinicId: 'cl3', status: 'Active', lastActive: '2026-09-04 08:47' },
+  { id: 'pu6', name: 'Lakshmi Menon', email: 'lakshmi.menon@mediconnect.in', role: 'Nurse', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-04 08:52' },
+  { id: 'pu7', name: 'Suresh Kumar', email: 'suresh.kumar@mediconnect.in', role: 'Receptionist', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-04 09:01' },
+  { id: 'pu8', name: 'Divya Shetty', email: 'divya.shetty@mediconnect.in', role: 'Lab Technician', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-04 08:47' },
+  { id: 'pu9', name: 'Ayesha Khan', email: 'ayesha.khan@mediconnect.in', role: 'Receptionist', clinicId: 'cl2', status: 'Inactive', lastActive: '2026-08-28 14:20' },
+  { id: 'pu10', name: 'Vikram Singh', email: 'vikram.singh@mediconnect.in', role: 'Pharmacy Staff', clinicId: 'cl3', status: 'Active', lastActive: '2026-09-04 08:55' },
+  { id: 'pu11', name: 'Fatima Ansari', email: 'fatima.ansari@mediconnect.in', role: 'HR Executive', clinicId: 'cl4', status: 'Active', lastActive: '2026-09-04 09:00' },
+  { id: 'pu12', name: 'Rohan Desai', email: 'rohan.desai@gmail.com', role: 'Patient', clinicId: 'cl1', status: 'Active', lastActive: '2026-09-04 07:30' },
+];
+
+export const ROLE_PERMISSIONS = [
+  { role: 'Super Admin', access: 'All branches, settings, analytics, and audit controls' },
+  { role: 'Doctor', access: 'Assigned appointments and permitted clinical records' },
+  { role: 'Nurse', access: 'Assigned patients, care tasks, and home visits' },
+  { role: 'Receptionist', access: 'Registration, scheduling, and authorized billing' },
+  { role: 'Lab Technician', access: 'Test orders, samples, results, and reports' },
+  { role: 'Pharmacy Staff', access: 'Prescriptions, inventory, dispensing, and billing' },
+  { role: 'HR Executive', access: 'Employees, attendance, leave, and payroll' },
+  { role: 'Patient', access: "Only the patient's authorized personal information" },
+];
+
+export const AUDIT_LOGS = [
+  { id: 'al1', actor: 'Ritu Sharma', action: 'Marked payment as Paid', target: 'Cardiology Follow-up — Rohan Desai', category: 'Billing', clinicId: 'cl1', timestamp: '2026-09-04 09:32' },
+  { id: 'al2', actor: 'Dr. Ananya Rao', action: 'Completed consultation', target: 'Yash Kulkarni — Follow-up', category: 'Clinical', clinicId: 'cl1', timestamp: '2026-09-04 09:15' },
+  { id: 'al3', actor: 'Lakshmi Menon', action: 'Checked in for shift', target: 'MediConnect Whitefield', category: 'Attendance', clinicId: 'cl1', timestamp: '2026-09-04 08:52' },
+  { id: 'al4', actor: 'Ritu Sharma', action: 'Assigned complaint to staff', target: 'Wait Time complaint — Sharanya B', category: 'Complaints', clinicId: 'cl3', timestamp: '2026-09-04 08:40' },
+  { id: 'al5', actor: 'Fatima Ansari', action: 'Processed payroll batch', target: 'September 2026 — Jayanagar branch', category: 'Payroll', clinicId: 'cl4', timestamp: '2026-09-04 08:15' },
+  { id: 'al6', actor: 'Ritu Sharma', action: 'Updated clinic operating hours', target: 'MediConnect Koramangala', category: 'Settings', clinicId: 'cl3', timestamp: '2026-09-03 18:20' },
+  { id: 'al7', actor: 'Dr. Karan Mehta', action: 'Issued prescription', target: 'Nisha Agarwal — Hypertension follow-up', category: 'Clinical', clinicId: 'cl1', timestamp: '2026-09-03 17:38' },
+  { id: 'al8', actor: 'Ayesha Khan', action: 'Login failed — incorrect password', target: 'MediConnect Indiranagar', category: 'Security', clinicId: 'cl2', timestamp: '2026-09-03 09:12' },
+  { id: 'al9', actor: 'Ritu Sharma', action: 'Exported financial report', target: 'August 2026 — All Clinics', category: 'Reports', clinicId: null, timestamp: '2026-09-02 16:05' },
+  { id: 'al10', actor: 'Suresh Kumar', action: 'Booked new appointment', target: 'Rohan Desai — Skin Rash Consultation', category: 'Appointments', clinicId: 'cl1', timestamp: '2026-09-02 11:22' },
+  { id: 'al11', actor: 'Ritu Sharma', action: 'Deactivated user account', target: 'Ayesha Khan — Receptionist', category: 'Users & Roles', clinicId: 'cl2', timestamp: '2026-08-28 14:25' },
+  { id: 'al12', actor: 'Divya Shetty', action: 'Uploaded lab report', target: 'Complete Blood Count — Rohan Desai', category: 'Clinical', clinicId: 'cl1', timestamp: '2026-08-28 10:40' },
+];
+
+export const ADMIN_NOTIFICATIONS = [
+  { id: 'an1', title: 'Payroll pending approval', body: '2 payslips for September 2026 are still pending disbursement.', time: '25m ago', read: false, category: 'Payroll' },
+  { id: 'an2', title: 'High-priority complaint filed', body: 'Yash Kulkarni reported a double-booked appointment slot at Whitefield.', time: '1h ago', read: false, category: 'Complaints' },
+  { id: 'an3', title: 'Staff checked in late', body: '2 staff members checked in after their scheduled shift start today.', time: '3h ago', read: false, category: 'Workforce' },
+  { id: 'an4', title: 'Outstanding payments rising', body: '₹2,260 in patient payments remain unpaid across all clinics.', time: '4h ago', read: true, category: 'Billing' },
+  { id: 'an5', title: 'Home visit delayed', body: 'The physiotherapy visit for Sharanya B is still marked Assigned past its scheduled time.', time: '6h ago', read: true, category: 'Home Visits' },
+  { id: 'an6', title: 'New user account created', body: "Rohan Desai's patient account was created and verified.", time: '1d ago', read: true, category: 'Users & Roles' },
+  { id: 'an7', title: 'Monthly report ready', body: 'The August 2026 organization-wide performance report is ready to export.', time: '2d ago', read: true, category: 'Reports' },
 ];

@@ -62,11 +62,13 @@
 .pl-avatar-btn { border: none; background: none; cursor: pointer; padding: 0; border-radius: 50%; }
 
 .pl-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: var(--ink-100);
   width: 32px; height: 32px;
   border-radius: 50%;
-  font-size: 15px;
   cursor: pointer;
   color: var(--ink-700);
 }
@@ -106,6 +108,9 @@
 .pl-tab.is-active { color: var(--brand-600); }
 
 .pl-exit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border: 1px solid var(--border-strong);
   background: var(--surface);
   color: var(--ink-600);

@@ -1,14 +1,15 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { Stethoscope, Users, Pill, FlaskConical, Power } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
 import { Avatar } from '../../components/ui.jsx';
 import './DoctorLayout.css';
 
 const NAV = [
-  { to: '/doctor', label: "Today's Queue", icon: '🩺', end: true },
-  { to: '/doctor/patients', label: 'My Patients', icon: '🧑‍🤝‍🧑' },
-  { to: '/doctor/prescriptions', label: 'Prescriptions', icon: '💊' },
-  { to: '/doctor/labs', label: 'Lab Requests', icon: '🧪' },
+  { to: '/doctor', label: "Today's Queue", icon: Stethoscope, end: true },
+  { to: '/doctor/patients', label: 'My Patients', icon: Users },
+  { to: '/doctor/prescriptions', label: 'Prescriptions', icon: Pill },
+  { to: '/doctor/labs', label: 'Lab Requests', icon: FlaskConical },
 ];
 
 export default function DoctorLayout() {
@@ -25,9 +26,11 @@ export default function DoctorLayout() {
     <div className="dl-shell">
       <aside className="dl-sidebar">
         <div className="dl-brand">
-          <span className="dl-brand__mark">MC</span>
+          <span className="dl-brand__mark">
+            <Stethoscope size={18} strokeWidth={2.4} />
+          </span>
           <div>
-            <div className="dl-brand__name">MediConnect</div>
+            <div className="dl-brand__name">CarePlus</div>
             <div className="dl-brand__tag">Doctor Workspace</div>
           </div>
         </div>
@@ -40,7 +43,7 @@ export default function DoctorLayout() {
               end={item.end}
               className={({ isActive }) => `dl-nav__item ${isActive ? 'is-active' : ''}`}
             >
-              <span className="dl-nav__icon">{item.icon}</span>
+              <item.icon className="dl-nav__icon" size={17} strokeWidth={2} />
               <span>{item.label}</span>
               {item.label === "Today's Queue" && todaysCount > 0 && <span className="dl-nav__pill">{todaysCount}</span>}
             </NavLink>
@@ -55,7 +58,9 @@ export default function DoctorLayout() {
               <div className="dl-user__role">{doctor?.dept}</div>
             </div>
           </div>
-          <button className="dl-logout" onClick={() => { logout(); navigate('/login'); }} title="Switch role">⏻</button>
+          <button className="dl-logout" onClick={() => { logout(); navigate('/login'); }} title="Switch role">
+            <Power size={15} strokeWidth={2.2} />
+          </button>
         </div>
       </aside>
 
