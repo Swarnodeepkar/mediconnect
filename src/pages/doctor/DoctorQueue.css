@@ -1,0 +1,22 @@
+.dq-list { display: flex; flex-direction: column; gap: 10px; }
+
+.dq-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+}
+.dq-card__time {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--brand-700);
+  width: 76px;
+  flex-shrink: 0;
+}
+.dq-card__body { flex: 1; min-width: 0; }
+.dq-card__name { font-weight: 700; font-size: 14.5px; color: var(--text-heading); }
+.dq-card__meta { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
