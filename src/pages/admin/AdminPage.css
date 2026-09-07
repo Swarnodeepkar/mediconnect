@@ -56,3 +56,76 @@
   gap: 14px;
   margin-bottom: 20px;
 }
+
+.ap-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.ap-pagination__info { font-size: 13px; color: var(--text-muted); }
+.ap-pagination__info b { color: var(--text-heading); font-weight: 700; }
+.ap-pagination__controls { display: flex; align-items: center; gap: 8px; }
+.ap-pagination__size { width: 118px; }
+.ap-pagination__size .mc-select__trigger { padding: 6px 10px; font-size: 12.5px; }
+.ap-pagination__size .mc-select__menu { top: auto; bottom: calc(100% + 6px); }
+.ap-pagination__page {
+  min-width: 30px; height: 30px;
+  padding: 0 4px;
+  border-radius: var(--radius-sm);
+  background: var(--brand-600);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.ap-pagination__btn {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-600);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.ap-pagination__btn:hover:not(:disabled) { border-color: var(--brand-400); background: var(--brand-50); color: var(--brand-600); }
+.ap-pagination__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ap-truncate {
+  display: inline-block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ap-dash { color: var(--text-muted); font-size: 12.5px; }
+
+.ap-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.ap-note-block {
+  background: var(--surface-sunk);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.ap-empty { padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 14px; }
+
+.ap-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+.ap-list-item { background: var(--surface-sunk); border-radius: var(--radius-sm); padding: 10px 12px; }
+.ap-list-item__title { font-weight: 700; font-size: 13px; color: var(--text-heading); }
+.ap-list-item__meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }

@@ -1,0 +1,39 @@
+<h2>Headings: serif accent, or all sans-serif?</h2>
+<p class="subtitle">Same "Refined Clinical" card, two heading treatments. Body text stays Inter either way.</p>
+
+<style>
+  .mc-mock2 { border-radius: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.10); background:#fff; padding: 22px 24px; }
+  .mc-mock2 .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #2358c9; margin-bottom: 6px; }
+  .mc-mock2 .stat { font-size: 34px; font-weight: 800; color: #0f172a; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .mc-mock2 .desc { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; color: #64748b; margin-bottom: 18px; }
+  .mc-mock2 .row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-top:1px solid #eef1f6; font-family:'Segoe UI', system-ui, sans-serif; font-size: 13px; color:#334155; }
+</style>
+
+<div class="split">
+  <div class="mockup" data-choice="serif-heading" onclick="toggleSelect(this)" style="cursor:pointer;">
+    <div class="mockup-header">Option A — Serif heading accent</div>
+    <div class="mockup-body">
+      <div class="mc-mock2">
+        <div class="eyebrow">Cardiology · Clinic 2</div>
+        <div class="stat" style="font-family: Georgia, 'Times New Roman', serif; font-weight:700;">Dr. Rao's Queue</div>
+        <div class="desc">12 patients waiting · avg wait 8 min</div>
+        <div class="row"><span>09:40 — S. Iyer</span><span>Checked in</span></div>
+        <div class="row"><span>09:55 — A. Menon</span><span>Waiting</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup" data-choice="all-sans" onclick="toggleSelect(this)" style="cursor:pointer;">
+    <div class="mockup-header">Option B — All sans-serif (Manrope)</div>
+    <div class="mockup-body">
+      <div class="mc-mock2">
+        <div class="eyebrow">Cardiology · Clinic 2</div>
+        <div class="stat" style="font-family: 'Segoe UI', system-ui, sans-serif; font-weight:800; letter-spacing:-0.03em;">Dr. Rao's Queue</div>
+        <div class="desc">12 patients waiting · avg wait 8 min</div>
+        <div class="row"><span>09:40 — S. Iyer</span><span>Checked in</span></div>
+        <div class="row"><span>09:55 — A. Menon</span><span>Waiting</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:20px;">A: warmer, more "premium clinic brochure." B: crisper, more "modern SaaS dashboard" — closer to what the app has today, just refined.</p>

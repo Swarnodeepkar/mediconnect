@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useClinic, filterByClinic } from '../../context/ClinicContext.jsx';
 import { useCollection, db } from '../../data/store.js';
-import { Card, Table, Avatar, Input, Modal, StatusBadge, Badge, Button, Field, Select } from '../../components/ui.jsx';
+import { Card, Table, Avatar, Input, Modal, StatusBadge, Badge, Button, Field, Select, usePagination, Pagination } from '../../components/ui.jsx';
 import { formatDate } from '../../lib/format.js';
 import './AdminPage.css';
 
@@ -24,6 +24,8 @@ export default function AdminPatients() {
     const q = search.toLowerCase();
     return scoped.filter((p) => p.name.toLowerCase().includes(q) || p.phone.includes(q));
   }, [scoped, search]);
+
+  const pagination = usePagination(rows);
 
   const clinicById = (id) => clinics.find((c) => c.id === id);
 
@@ -61,8 +63,10 @@ export default function AdminPatients() {
             { key: 'clinic', header: 'Home Clinic', render: (r) => clinicById(r.clinicId)?.code },
             { key: 'lastVisit', header: 'Last Visit', render: (r) => formatDate(r.lastVisit) },
           ]}
-          rows={rows}
+          rows={pagination.pagedRows}
         />
+
+        <Pagination {...pagination} />
       </Card>
 
       <PatientDetailModal

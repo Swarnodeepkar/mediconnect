@@ -20,6 +20,8 @@ import AdminSettings from './pages/admin/AdminSettings.jsx';
 import PatientLayout from './pages/patient/PatientLayout.jsx';
 import PatientHome from './pages/patient/PatientHome.jsx';
 import PatientAppointments from './pages/patient/PatientAppointments.jsx';
+import PatientFindDoctors from './pages/patient/PatientFindDoctors.jsx';
+import PatientDoctorProfile from './pages/patient/PatientDoctorProfile.jsx';
 import PatientRecords from './pages/patient/PatientRecords.jsx';
 import PatientPayments from './pages/patient/PatientPayments.jsx';
 import PatientProfile from './pages/patient/PatientProfile.jsx';
@@ -82,6 +84,8 @@ export default function App() {
       >
         <Route index element={<PatientHome />} />
         <Route path="appointments" element={<PatientAppointments />} />
+        <Route path="find-doctors" element={<PatientFindDoctors />} />
+        <Route path="find-doctors/:doctorId" element={<PatientDoctorProfile />} />
         <Route path="records" element={<PatientRecords />} />
         <Route path="payments" element={<PatientPayments />} />
         <Route path="profile" element={<PatientProfile />} />

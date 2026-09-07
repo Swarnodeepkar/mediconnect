@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { CalendarDays, FlaskConical, Pill, IndianRupee, MapPin, Clock, ChevronRight, FileText } from 'lucide-react';
+import { CalendarDays, FlaskConical, Pill, IndianRupee, MapPin, Clock, ChevronRight, FileText, Stethoscope } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
 import { Avatar } from '../../components/ui.jsx';
@@ -7,6 +7,7 @@ import { formatDate, formatTime12 } from '../../lib/format.js';
 import './PatientHome.css';
 
 const QUICK_ACTIONS = [
+  { icon: Stethoscope, label: 'Find Doctors', to: '/patient/find-doctors' },
   { icon: CalendarDays, label: 'Book Visit', to: '/patient/appointments?book=1' },
   { icon: FlaskConical, label: 'Lab Reports', to: '/patient/records?tab=labs' },
   { icon: Pill, label: 'Prescriptions', to: '/patient/records?tab=rx' },
@@ -37,6 +38,11 @@ export default function PatientHome() {
 
   return (
     <div className="ph">
+      <div className="ph-greet">
+        <div className="ph-greet__hi">Hello, {user.name.split(' ')[0]}</div>
+        <div className="ph-greet__sub">How are you feeling today?</div>
+      </div>
+
       {upcoming ? (
         <div className="ph-appt-card" onClick={() => navigate('/patient/appointments')}>
           <div className="ph-appt-card__label">Upcoming Appointment</div>

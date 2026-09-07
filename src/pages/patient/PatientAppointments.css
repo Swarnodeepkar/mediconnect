@@ -1,15 +1,6 @@
 .pa { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; padding-bottom: 8px; }
 
-.pa-book-cta {
-  border: 1.5px dashed var(--brand-400);
-  background: var(--brand-50);
-  color: var(--brand-700);
-  font-weight: 700;
-  font-size: 13.5px;
-  padding: 12px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
+.pa-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
 .pa-list { display: flex; flex-direction: column; gap: 10px; }
 .pa-empty { text-align: center; padding: 30px 10px; color: var(--text-muted); font-size: 13.5px; }
@@ -70,6 +61,7 @@
   color: var(--text);
 }
 .pa-slot.is-selected { border-color: var(--brand-500); background: var(--brand-600); color: #fff; }
+.pa-slot:disabled { opacity: 0.35; text-decoration: line-through; cursor: not-allowed; }
 
 .pa-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
 

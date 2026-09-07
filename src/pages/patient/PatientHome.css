@@ -1,5 +1,8 @@
 .ph { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; padding-bottom: 8px; }
 
+.ph-greet__hi { font-family: var(--heading); font-weight: 800; font-size: 21px; color: var(--text-heading); }
+.ph-greet__sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
 .ph-appt-card {
   background: linear-gradient(135deg, var(--brand-600), var(--brand-800) 120%);
   border-radius: var(--radius-lg);

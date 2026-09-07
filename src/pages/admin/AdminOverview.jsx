@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ResponsiveContainer, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
+  ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import {
-  Users, CalendarDays, FlaskConical, IndianRupee, UserCog, Home, Flag,
+  Users, CalendarDays, FlaskConical, IndianRupee, UserCog, Home,
   CalendarPlus, UserPlus, AlertCircle, HomeIcon, UserCog2, BarChart3,
-  Clock3, Banknote, CalendarX2,
+  Banknote, DoorOpen, BedSingle, KeyRound,
 } from 'lucide-react';
 import { useClinic, filterByClinic } from '../../context/ClinicContext.jsx';
 import { useCollection } from '../../data/store.js';
@@ -47,9 +47,7 @@ export default function AdminOverview() {
   const presentToday = attendance.filter((a) => staffIds.has(a.staffId) && (a.status === 'Present' || a.status === 'Late')).length;
   const absentToday = attendance.filter((a) => staffIds.has(a.staffId) && a.status === 'Absent').length;
   const onLeaveToday = attendance.filter((a) => staffIds.has(a.staffId) && a.status === 'On Leave').length;
-  const lateToday = attendance.filter((a) => staffIds.has(a.staffId) && a.status === 'Late').length;
 
-  const openComplaints = scopedComplaints.filter((c) => c.status !== 'Resolved' && c.status !== 'Closed').length;
   const outstandingAmount = filterByClinic(payments, clinicId).filter((p) => p.status === 'Due').reduce((s, p) => s + p.amount, 0);
 
   const revenueByClinicData = useMemo(() => {
@@ -60,14 +58,6 @@ export default function AdminOverview() {
       return row;
     });
   }, [revenueTrend, clinicId, clinics]);
-
-  const appointmentsTrend = useMemo(() => {
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    return days.map((day, i) => ({
-      day,
-      appointments: Math.round((scopedAppointments.length || 8) * (0.7 + 0.35 * Math.sin(i * 1.3)) / 1.4),
-    }));
-  }, [scopedAppointments.length]);
 
   const clinicColorFor = (id) => clinics.find((c) => c.id === id)?.color || 'var(--brand-500)';
 
@@ -99,20 +89,38 @@ export default function AdminOverview() {
 
   const revenueByClinicDonut = clinicRows.map((c) => ({ name: c.name, value: c.revenue, color: c.color })).filter((d) => d.value > 0);
 
-  const alerts = [
-    openComplaints > 0 && { icon: AlertCircle, text: `${openComplaints} open complaint${openComplaints > 1 ? 's' : ''} require attention`, tone: 'danger' },
-    lateToday > 0 && { icon: Clock3, text: `${lateToday} staff member${lateToday > 1 ? 's' : ''} checked in late`, tone: 'warn' },
-    scopedVisits.filter((v) => v.status !== 'Completed').length > 0 && { icon: HomeIcon, text: `${scopedVisits.filter((v) => v.status !== 'Completed').length} home visits pending`, tone: 'brand' },
-    outstandingAmount > 0 && { icon: Banknote, text: `${formatCurrency(outstandingAmount)} in outstanding payments`, tone: 'purple' },
-    todaysAppts.filter((a) => a.status === 'Cancelled').length > 0 && { icon: CalendarX2, text: `${todaysAppts.filter((a) => a.status === 'Cancelled').length} cancelled appointments today`, tone: 'danger' },
-  ].filter(Boolean);
-
   return (
     <div className="ov">
       <div className="ov-head">
         <div>
           <h1>Welcome back, Admin!</h1>
           <p className="ov-sub">Here&apos;s what is happening across {clinicId === 'all' ? 'all clinics' : clinicById(clinicId)?.name} today.</p>
+        </div>
+        <div className="ov-head__actions">
+          <button className="ov-head__action" onClick={() => navigate('/admin/appointments')}>
+            <CalendarPlus size={16} strokeWidth={2} />
+            <span>New Appointment</span>
+          </button>
+          <button className="ov-head__action" onClick={() => navigate('/admin/patients')}>
+            <UserPlus size={16} strokeWidth={2} />
+            <span>Add Patient</span>
+          </button>
+          <button className="ov-head__action" onClick={() => navigate('/admin/complaints')}>
+            <AlertCircle size={16} strokeWidth={2} />
+            <span>New Complaint</span>
+          </button>
+          <button className="ov-head__action" onClick={() => navigate('/admin/home-visits')}>
+            <HomeIcon size={16} strokeWidth={2} />
+            <span>Add Home Visit</span>
+          </button>
+          <button className="ov-head__action" onClick={() => navigate('/admin/staff')}>
+            <UserCog2 size={16} strokeWidth={2} />
+            <span>Add Staff</span>
+          </button>
+          <button className="ov-head__action" onClick={() => navigate('/admin/reports')}>
+            <BarChart3 size={16} strokeWidth={2} />
+            <span>Generate Report</span>
+          </button>
         </div>
       </div>
 
@@ -123,96 +131,53 @@ export default function AdminOverview() {
         <StatTile label="Revenue Today" value={formatCurrency(revenue)} delta="↑ 15% vs yesterday" tone="positive" icon={IndianRupee} iconTone="warn" />
         <StatTile label="Staff Present" value={`${presentToday} / ${scopedStaff.length}`} delta={`${scopedStaff.length - presentToday} away`} tone="neutral" icon={UserCog} iconTone="brand" />
         <StatTile label="Home Visits" value={scopedVisits.length} delta={`${scopedVisits.filter(v => v.status === 'In Progress' || v.status === 'Assigned').length} active`} tone="neutral" icon={Home} iconTone="success" />
-        <StatTile label="Open Complaints" value={openComplaints} delta={openComplaints > 3 ? 'Needs attention' : 'Under control'} tone={openComplaints > 3 ? 'negative' : 'positive'} icon={Flag} iconTone="danger" />
+        <RoomAvailabilityTile
+          value="15,140"
+          delta="↑ 500"
+          rooms={[
+            { icon: BedSingle, label: 'General room', count: 100 },
+            { icon: KeyRound, label: 'Private Room', count: 75 },
+          ]}
+        />
         <StatTile label="Outstanding Amount" value={formatCurrency(outstandingAmount)} delta="↑ 11% vs yesterday" tone="neutral" icon={Banknote} iconTone="purple" />
       </div>
 
-      <div className="ov-grid">
-        <div className="ov-charts-col">
-          <Card className="ov-chart-card">
-            <div className="ov-card-head">
-              <h3>Revenue Overview</h3>
-              <span className="ov-card-sub">{clinicId === 'all' ? 'All clinics' : clinicById(clinicId)?.name} &middot; This week</span>
-            </div>
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={revenueByClinicData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }} barGap={4}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="day" tick={{ fontSize: 12.5, fill: 'var(--ink-500)' }} axisLine={{ stroke: 'var(--border)' }} tickLine={false} />
-                <YAxis tick={{ fontSize: 12, fill: 'var(--ink-500)' }} axisLine={false} tickLine={false} tickFormatter={(v) => `₹${v / 1000}k`} width={48} />
-                <Tooltip formatter={(value) => formatCurrency(value)} contentStyle={{ borderRadius: 10, border: '1px solid var(--border)', fontSize: 13, boxShadow: 'var(--shadow-md)' }} />
-                {clinicId === 'all' && <Legend wrapperStyle={{ fontSize: 12.5 }} formatter={(v) => clinicById(v)?.name} />}
-                {(clinicId === 'all' ? clinics.map((c) => c.id) : [clinicId]).map((id) => (
-                  <Bar key={id} dataKey={id} name={id} fill={clinicColorFor(id)} radius={[4, 4, 0, 0]} maxBarSize={28} />
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
-          </Card>
-
-          <Card className="ov-chart-card">
-            <div className="ov-card-head">
-              <h3>Appointments Overview</h3>
-              <span className="ov-card-sub">This week</span>
-            </div>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={appointmentsTrend} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="day" tick={{ fontSize: 12.5, fill: 'var(--ink-500)' }} axisLine={{ stroke: 'var(--border)' }} tickLine={false} />
-                <YAxis tick={{ fontSize: 12, fill: 'var(--ink-500)' }} axisLine={false} tickLine={false} width={30} allowDecimals={false} />
-                <Tooltip contentStyle={{ borderRadius: 10, border: '1px solid var(--border)', fontSize: 13, boxShadow: 'var(--shadow-md)' }} />
-                <Line type="monotone" dataKey="appointments" stroke="var(--brand-500)" strokeWidth={2.5} dot={{ r: 4, fill: 'var(--brand-500)' }} activeDot={{ r: 6 }} />
-              </LineChart>
-            </ResponsiveContainer>
-          </Card>
+      <Card className="ov-chart-card ov-revenue-card">
+        <div className="ov-card-head">
+          <h3>Revenue Overview</h3>
+          <span className="ov-card-sub">{clinicId === 'all' ? 'All clinics' : clinicById(clinicId)?.name} &middot; This week</span>
         </div>
-
-        <div className="ov-side-col">
-          <Card className="ov-panel-card">
-            <div className="ov-card-head"><h3>Quick Actions</h3></div>
-            <div className="ov-quick-grid">
-              <button className="ov-quick" onClick={() => navigate('/admin/appointments')}>
-                <span className="ov-quick__icon ov-quick__icon--brand"><CalendarPlus size={17} strokeWidth={2} /></span>
-                New Appointment
-              </button>
-              <button className="ov-quick" onClick={() => navigate('/admin/patients')}>
-                <span className="ov-quick__icon ov-quick__icon--success"><UserPlus size={17} strokeWidth={2} /></span>
-                Add Patient
-              </button>
-              <button className="ov-quick" onClick={() => navigate('/admin/complaints')}>
-                <span className="ov-quick__icon ov-quick__icon--danger"><AlertCircle size={17} strokeWidth={2} /></span>
-                New Complaint
-              </button>
-              <button className="ov-quick" onClick={() => navigate('/admin/home-visits')}>
-                <span className="ov-quick__icon ov-quick__icon--warn"><HomeIcon size={17} strokeWidth={2} /></span>
-                Add Home Visit
-              </button>
-              <button className="ov-quick" onClick={() => navigate('/admin/staff')}>
-                <span className="ov-quick__icon ov-quick__icon--brand"><UserCog2 size={17} strokeWidth={2} /></span>
-                Add Staff
-              </button>
-              <button className="ov-quick" onClick={() => navigate('/admin/reports')}>
-                <span className="ov-quick__icon ov-quick__icon--purple"><BarChart3 size={17} strokeWidth={2} /></span>
-                Generate Report
-              </button>
-            </div>
-          </Card>
-
-          <Card className="ov-panel-card">
-            <div className="ov-card-head">
-              <h3>Alerts</h3>
-              <button className="ov-link" onClick={() => navigate('/admin/notifications')}>View All</button>
-            </div>
-            <div className="ov-alert-list">
-              {alerts.length === 0 && <div className="ov-empty">No alerts right now.</div>}
-              {alerts.map((a, i) => (
-                <div className="ov-alert-row" key={i}>
-                  <span className={`ov-alert-row__icon ov-alert-row__icon--${a.tone}`}><a.icon size={15} strokeWidth={2.1} /></span>
-                  {a.text}
-                </div>
+        <ResponsiveContainer width="100%" height={320}>
+          <AreaChart data={revenueByClinicData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+            <defs>
+              {(clinicId === 'all' ? clinics.map((c) => c.id) : [clinicId]).map((id) => (
+                <linearGradient key={id} id={`ovRevFill-${id}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={clinicColorFor(id)} stopOpacity={0.45} />
+                  <stop offset="95%" stopColor={clinicColorFor(id)} stopOpacity={0.04} />
+                </linearGradient>
               ))}
-            </div>
-          </Card>
-        </div>
-      </div>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+            <XAxis dataKey="day" tick={{ fontSize: 12.5, fill: 'var(--ink-500)' }} axisLine={{ stroke: 'var(--border)' }} tickLine={false} />
+            <YAxis tick={{ fontSize: 12, fill: 'var(--ink-500)' }} axisLine={false} tickLine={false} tickFormatter={(v) => `₹${v / 1000}k`} width={48} />
+            <Tooltip formatter={(value) => formatCurrency(value)} contentStyle={{ borderRadius: 10, border: '1px solid var(--border)', fontSize: 13, boxShadow: 'var(--shadow-md)' }} />
+            {clinicId === 'all' && <Legend wrapperStyle={{ fontSize: 12.5 }} formatter={(v) => clinicById(v)?.name} />}
+            {(clinicId === 'all' ? clinics.map((c) => c.id) : [clinicId]).map((id) => (
+              <Area
+                key={id}
+                type="monotone"
+                dataKey={id}
+                name={id}
+                stroke={clinicColorFor(id)}
+                strokeWidth={2.5}
+                fill={`url(#ovRevFill-${id})`}
+                dot={{ r: 3, fill: clinicColorFor(id), strokeWidth: 0 }}
+                activeDot={{ r: 5 }}
+              />
+            ))}
+          </AreaChart>
+        </ResponsiveContainer>
+      </Card>
 
       <div className="ov-grid ov-grid--donuts">
         <Card className="ov-donut-card">
@@ -282,6 +247,34 @@ export default function AdminOverview() {
         </Card>
       </div>
     </div>
+  );
+}
+
+function RoomAvailabilityTile({ value, delta, rooms }) {
+  return (
+    <Card className="mc-stat ov-rooms-card">
+      <div className="mc-stat__top">
+        <span className="mc-stat__icon mc-stat__icon--purple">
+          <DoorOpen size={18} strokeWidth={2} />
+        </span>
+        <span className="mc-stat__label">Room availability</span>
+      </div>
+      <div className="ov-rooms-card__value-row">
+        <span className="mc-stat__value">{value}</span>
+        <span className="ov-rooms-card__chip">{delta}</span>
+      </div>
+      <div className="ov-rooms-card__list">
+        {rooms.map(({ icon: Icon, label, count }) => (
+          <div className="ov-rooms-card__row" key={label}>
+            <span className="ov-rooms-card__row-icon">
+              <Icon size={13} strokeWidth={2.2} />
+            </span>
+            <span className="ov-rooms-card__row-label">{label}</span>
+            <span className="ov-rooms-card__row-count">{count}</span>
+          </div>
+        ))}
+      </div>
+    </Card>
   );
 }
 

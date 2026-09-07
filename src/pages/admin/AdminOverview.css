@@ -1,21 +1,81 @@
-.ov-head { margin-bottom: 22px; }
+.ov-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
 .ov-head h1 { font-size: 24px; }
 .ov-sub { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
 
+.ov-head__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; flex-shrink: 0; }
+.ov-head__action {
+  display: flex; align-items: center; gap: 7px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-heading);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.ov-head__action svg { color: var(--ink-500); flex-shrink: 0; }
+.ov-head__action:hover { border-color: var(--brand-400); background: var(--brand-50); color: var(--brand-700); }
+.ov-head__action:hover svg { color: var(--brand-600); }
+
+@media (max-width: 980px) {
+  .ov-head { flex-direction: column; }
+  .ov-head__actions { justify-content: flex-start; }
+}
+
 .ov-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 1200px) {
+  .ov-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .ov-stats { grid-template-columns: 1fr; }
+}
+
+.ov-revenue-card { margin-bottom: 18px; }
+
+.ov-rooms-card__value-row { display: flex; align-items: center; gap: 8px; }
+.ov-rooms-card__chip {
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--success-50);
+  color: var(--success-600);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.ov-rooms-card__list { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+.ov-rooms-card__row { display: flex; align-items: center; gap: 8px; }
+.ov-rooms-card__row-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--brand-50);
+  color: var(--brand-600);
+}
+.ov-rooms-card__row:nth-child(2) .ov-rooms-card__row-icon { background: var(--ink-100); color: var(--ink-700); }
+.ov-rooms-card__row-label { font-size: 12.5px; color: var(--text-muted); flex: 1; }
+.ov-rooms-card__row-count { font-size: 12.5px; font-weight: 700; color: var(--text-heading); }
 
 .ov-grid {
   display: grid;
   grid-template-columns: 1.7fr 1fr;
   gap: 18px;
   margin-bottom: 18px;
-  align-items: start;
+  align-items: stretch;
 }
+.ov-grid > .mc-card { height: 100%; display: flex; flex-direction: column; }
 .ov-grid--bottom { grid-template-columns: 1.5fr 1fr; }
 .ov-grid--donuts { grid-template-columns: repeat(3, 1fr); }
 
@@ -23,9 +83,7 @@
   .ov-grid, .ov-grid--bottom, .ov-grid--donuts { grid-template-columns: 1fr; }
 }
 
-.ov-charts-col, .ov-side-col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-
-.ov-chart-card, .ov-clinics-card, .ov-complaints-card, .ov-panel-card, .ov-donut-card {
+.ov-chart-card, .ov-clinics-card, .ov-complaints-card, .ov-donut-card {
   padding: 20px 22px;
   min-width: 0;
 }
@@ -68,65 +126,8 @@
 
 .ov-empty { padding: 24px 0; text-align: center; color: var(--text-muted); font-size: 13.5px; }
 
-/* Quick Actions */
-.ov-quick-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.ov-quick {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text-heading);
-  cursor: pointer;
-  text-align: left;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.ov-quick:hover { border-color: var(--border-strong); background: var(--surface-sunk); }
-.ov-quick__icon {
-  width: 30px; height: 30px;
-  border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.ov-quick__icon--brand { background: var(--brand-50); color: var(--brand-600); }
-.ov-quick__icon--success { background: var(--success-50); color: var(--success-600); }
-.ov-quick__icon--warn { background: var(--warn-50); color: var(--warn-600); }
-.ov-quick__icon--danger { background: var(--danger-50); color: var(--danger-600); }
-.ov-quick__icon--purple { background: #f3eeff; color: #7c5cff; }
-
-/* Alerts */
-.ov-alert-list { display: flex; flex-direction: column; gap: 4px; }
-.ov-alert-row {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 10px 4px;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--text);
-}
-.ov-alert-row:last-child { border-bottom: none; }
-.ov-alert-row__icon {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.ov-alert-row__icon--danger { background: var(--danger-50); color: var(--danger-600); }
-.ov-alert-row__icon--warn { background: var(--warn-50); color: var(--warn-600); }
-.ov-alert-row__icon--brand { background: var(--brand-50); color: var(--brand-600); }
-.ov-alert-row__icon--purple { background: #f3eeff; color: #7c5cff; }
-
 /* Donut cards */
-.ov-donut-legend { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.ov-donut-legend { display: flex; flex-direction: column; flex: 1; gap: 8px; margin-top: 8px; }
 .ov-donut-legend__row {
   display: flex;
   align-items: center;
@@ -143,6 +144,6 @@
   font-weight: 700;
   color: var(--text-heading);
   padding-top: 10px;
-  margin-top: 4px;
+  margin-top: auto;
   border-top: 1px solid var(--border);
 }

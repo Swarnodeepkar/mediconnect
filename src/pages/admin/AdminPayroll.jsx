@@ -86,21 +86,37 @@ export default function AdminPayroll() {
         <StatTile label="Average Salary" value={formatCurrency(avgSalary)} tone="neutral" icon={Users} iconTone="purple" />
       </div>
 
+      <div className="ay-disburse-track">
+        <div className="ay-disburse-track__fill" style={{ width: `${monthSlips.length ? (paidCount / monthSlips.length) * 100 : 0}%` }} />
+        <span className="ay-disburse-track__label">{paidCount} of {monthSlips.length} disbursed</span>
+      </div>
+
       <Card className="ay-summary-card">
         <div className="ov-card-head"><h3>Department Summary</h3></div>
-        <div className="ay-role-grid">
+        <div className="ay-ledger">
+          <div className="ay-ledger__head">
+            <span>Role</span>
+            <span>Headcount</span>
+            <span>Avg / head</span>
+            <span>Total</span>
+          </div>
           {byRole.map((r) => (
-            <div className="ay-role-row" key={r.role}>
-              <span className="ay-role-row__name">{r.role}</span>
-              <span className="ay-role-row__count">{r.count} employee{r.count > 1 ? 's' : ''}</span>
-              <span className="ay-role-row__total">{formatCurrency(r.total)}</span>
+            <div className="ay-ledger__row" key={r.role}>
+              <span className="ay-ledger__name">{r.role}</span>
+              <span className="ay-ledger__count">{r.count}</span>
+              <span className="ay-ledger__avg">{formatCurrency(Math.round(r.total / r.count))}</span>
+              <span className="ay-ledger__total-wrap">
+                <span className="ay-ledger__bar" style={{ width: `${totalPayroll ? (r.total / totalPayroll) * 100 : 0}%` }} />
+                <span className="ay-ledger__total">{formatCurrency(r.total)}</span>
+              </span>
             </div>
           ))}
           {byRole.length === 0 && <div className="ov-empty">No payroll data for this month.</div>}
         </div>
       </Card>
 
-      <Card className="ap-card" style={{ marginTop: 18 }}>
+      <Card className="ap-card ay-payslip-card" style={{ marginTop: 18 }}>
+        <div className="ov-card-head"><h3>Payslips</h3></div>
         <Table
           empty="No payslips found for this month."
           onRowClick={(r) => setActive(r)}
@@ -158,6 +174,7 @@ function PayslipModal({ payslip, onClose, staffById }) {
         <div className="ay-breakdown__row"><span>Overtime</span><span>+{formatCurrency(payslip.overtime)}</span></div>
         <div className="ay-breakdown__row"><span>Incentives</span><span>+{formatCurrency(payslip.incentives)}</span></div>
         <div className="ay-breakdown__row"><span>Deductions</span><span>-{formatCurrency(payslip.deductions)}</span></div>
+        <div className="ay-breakdown__stub" />
         <div className="ay-breakdown__row ay-breakdown__row--total"><span>Net Pay</span><span>{formatCurrency(payslip.netPay)}</span></div>
       </div>
 

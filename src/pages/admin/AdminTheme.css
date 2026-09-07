@@ -1,0 +1,191 @@
+/*
+  Admin console theme
+  --------------------
+  Everything here is scoped under .al-shell (the admin app root), so it
+  re-skins the admin console only — the patient, doctor and staff portals
+  keep their existing look untouched, since they share the same ui.css
+  component kit but never render inside .al-shell.
+
+  Direction: a multi-clinic operations console, not a marketing SaaS panel.
+  Clinical teal + an ochre "tab" accent replace the generic brand-blue;
+  neutrals get a warm sage-charcoal cast instead of cool slate; radii and
+  shadows are pulled back so panels read as instrument-panel surfaces
+  divided by hairlines rather than stacked drop-shadow cards; numerals
+  that matter (totals, IDs, payroll figures) move to a mono face so they
+  align and scan the way a ledger does.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
+
+.al-shell {
+  /* Typefaces */
+  --sans: 'Public Sans', system-ui, 'Segoe UI', sans-serif;
+  --heading: 'Public Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-family: var(--sans);
+
+  /* Brand — clinical teal */
+  --brand-50: #eaf4f1;
+  --brand-100: #cfe7df;
+  --brand-200: #a2d0c3;
+  --brand-300: #72b7a5;
+  --brand-400: #479c89;
+  --brand-500: #237e6c;
+  --brand-600: #0e6b5c;
+  --brand-700: #0b5548;
+  --brand-800: #093f36;
+  --brand-900: #072d26;
+
+  /* Accent — ochre "folder tab" */
+  --accent-50: #fbf3e5;
+  --accent-100: #f3e1bc;
+  --accent-300: #e0b366;
+  --accent-500: #c98a2e;
+  --accent-600: #a96f1e;
+  --accent-700: #7e5316;
+
+  /* Info — separated from brand so status reads distinctly */
+  --info-50: #eef2f6;
+  --info-500: #4a6fa1;
+  --blue-500: #4a6fa1;
+  --blue-600: #3a5a85;
+  --blue-700: #2e4a6d;
+
+  /* Semantic */
+  --success-50: #f0f5e9;
+  --success-500: #5b8c3e;
+  --success-600: #46702e;
+  --warn-50: #fdf6e7;
+  --warn-500: #cc9a2e;
+  --warn-600: #a67a1d;
+  --danger-50: #fbeeec;
+  --danger-500: #b14438;
+  --danger-600: #92362c;
+  --danger-700: #742b23;
+
+  /* Neutrals — warm sage-charcoal instead of cool slate */
+  --ink-900: #16211d;
+  --ink-800: #22302b;
+  --ink-700: #3a4a43;
+  --ink-600: #55665d;
+  --ink-500: #71827a;
+  --ink-400: #94a39c;
+  --ink-300: #b7c2bb;
+  --ink-200: #d8dfda;
+  --ink-100: #e9ede9;
+  --ink-50: #f4f6f3;
+
+  --surface: #ffffff;
+  --surface-sunk: #eff3ee;
+  --surface-raised: #ffffff;
+  --border: #dce3db;
+  --border-strong: #c1ccc0;
+
+  --text: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-heading: var(--ink-900);
+
+  /* Flatter panels, hairlines over drop-shadows */
+  --shadow-xs: 0 1px 2px rgba(16, 26, 22, 0.05);
+  --shadow-sm: 0 1px 3px rgba(16, 26, 22, 0.07);
+  --shadow-md: 0 6px 18px rgba(16, 26, 22, 0.10);
+  --shadow-lg: 0 18px 40px rgba(16, 26, 22, 0.18);
+
+  /* Tighter, hierarchy-aware radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+
+  background: var(--surface-sunk);
+}
+
+.al-shell h1, .al-shell h2, .al-shell h3, .al-shell h4, .al-shell h5 {
+  letter-spacing: -0.01em;
+}
+
+/* ---- Cards & panels: hairline border does the work, shadow stays quiet ---- */
+.al-shell .mc-card {
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+/* ---- Stat tiles: a left "tab" instead of an icon-in-a-rounded-square ---- */
+.al-shell .mc-stat {
+  border-left: 3px solid var(--ink-200);
+  border-radius: var(--radius-sm);
+  padding-left: 17px;
+}
+.al-shell .mc-stat:has(.mc-stat__icon--brand) { border-left-color: var(--brand-600); }
+.al-shell .mc-stat:has(.mc-stat__icon--success) { border-left-color: var(--success-600); }
+.al-shell .mc-stat:has(.mc-stat__icon--warn) { border-left-color: var(--warn-600); }
+.al-shell .mc-stat:has(.mc-stat__icon--danger) { border-left-color: var(--danger-600); }
+.al-shell .mc-stat:has(.mc-stat__icon--purple) { border-left-color: #6b5ca0; }
+.al-shell .mc-stat__icon {
+  background: transparent !important;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+.al-shell .mc-stat__value {
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.al-shell .mc-badge--purple,
+.al-shell .mc-stat__icon--purple { background: #efeaf7; color: #6b5ca0; }
+
+/* ---- Badges: rectangular tags, not pills — reads as a status stamp ---- */
+.al-shell .mc-badge {
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* ---- Buttons: flat, no glow ---- */
+.al-shell .mc-btn--primary {
+  box-shadow: none;
+  border-color: var(--brand-700);
+}
+
+/* ---- Tables: sentence-case headers instead of tracked caps ---- */
+.al-shell .mc-table thead th {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-600);
+  border-bottom: 1px solid var(--border-strong);
+}
+.al-shell .mc-table tbody td { font-size: 13.5px; }
+
+/* ---- Modal close: square-ish to match the rest of the chrome ---- */
+.al-shell .mc-modal__close { border-radius: var(--radius-sm); }
+
+/* ---- Data-heavy numerals across admin pages read as a ledger, not prose ---- */
+.al-shell .ac-metric__v,
+.al-shell .ac-card__id,
+.al-shell .rp-big-number,
+.al-shell .ay-role-row__total,
+.al-shell .ay-breakdown__row--total,
+.al-shell .st-balance-chip__v {
+  font-family: var(--mono);
+}
+
+/* ---- Eyebrow labels: hierarchy from weight/color, not tracked caps ---- */
+.al-shell .ap-section-label,
+.al-shell .ac-row__label,
+.al-shell .ov-complaint-cat,
+.al-shell .as-card__label,
+.al-shell .st-balance-chip__l {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.al-shell .hv-delayed-tag,
+.al-shell .st-tag {
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 4px;
+}

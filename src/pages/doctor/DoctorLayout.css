@@ -97,7 +97,7 @@
 .dl-topbar__right { margin-left: auto; }
 .dl-date { font-size: 13px; color: var(--text-muted); font-weight: 500; }
 
-.dl-content { flex: 1; padding: 26px 28px 40px; max-width: 1100px; }
+.dl-content { flex: 1; padding: 26px 28px 40px; }
 
 @media (max-width: 900px) {
   .dl-sidebar { width: 200px; }

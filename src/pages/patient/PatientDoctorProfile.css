@@ -1,0 +1,142 @@
+.dpw-back {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: none;
+  background: none;
+  color: var(--text-heading);
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  padding: 8px 10px;
+  margin: -8px 0 16px -10px;
+  border-radius: var(--radius-sm);
+}
+.dpw-back:hover { background: var(--surface); }
+
+.dpw-empty { max-width: 480px; margin: 40px auto; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; color: var(--text-muted); }
+
+.dpw-body {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .dpw-body { grid-template-columns: 1fr; }
+}
+
+.dpw-side {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: sticky;
+  top: 24px;
+}
+@media (max-width: 760px) { .dpw-side { position: static; } }
+
+.dpw-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 16px;
+}
+.dpw-photo svg { width: 100%; height: 100%; display: block; }
+.dpw-photo__badge {
+  position: absolute;
+  bottom: -6px; right: -6px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--brand-500);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.dpw-name { font-size: 19px; font-weight: 800; color: var(--text-heading); }
+.dpw-dept { font-size: 13.5px; font-weight: 700; color: var(--brand-600); margin-top: 3px; }
+.dpw-qual { font-size: 12px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
+.dpw-rating { display: flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; color: var(--warn-600); margin-top: 8px; }
+
+.dpw-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.dpw-stat { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--brand-500); }
+.dpw-stat__v { font-size: 16px; font-weight: 800; color: var(--text-heading); }
+.dpw-stat__l { font-size: 10.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.02em; }
+
+.dpw-cta {
+  width: 100%;
+  border: none;
+  background: var(--brand-600);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-top: 20px;
+}
+.dpw-cta:hover { background: var(--brand-700); }
+
+.dpw-btn { border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.dpw-btn--outline { border: 1.5px solid var(--border); background: var(--surface); color: var(--text-heading); }
+
+.dpw-main { display: flex; flex-direction: column; gap: 22px; }
+.dpw-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+}
+.dpw-section h3 { font-size: 14.5px; font-weight: 800; color: var(--text-heading); margin-bottom: 12px; }
+.dpw-bio { font-size: 13.5px; line-height: 1.65; color: var(--text); }
+.dpw-muted { font-size: 12.5px; color: var(--text-muted); }
+
+.dpw-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.dpw-tag {
+  background: var(--brand-50);
+  color: var(--brand-700);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+}
+
+.dpw-slot-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.dpw-slot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-700);
+  cursor: pointer;
+}
+.dpw-slot:hover { border-color: var(--brand-400); background: var(--brand-50); }
+.dpw-slot svg { color: var(--brand-500); }
+
+.dpw-clinic-card { display: flex; flex-direction: column; gap: 6px; }
+.dpw-clinic-card__name { font-weight: 700; font-size: 14px; color: var(--text-heading); display: flex; align-items: center; gap: 8px; }
+.dpw-clinic-code { font-size: 11px; font-weight: 700; color: var(--brand-600); background: var(--brand-50); padding: 2px 8px; border-radius: var(--radius-full); }
+.dpw-clinic-card__addr { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); }
+.dpw-clinic-card__addr svg { flex-shrink: 0; color: var(--ink-400); }

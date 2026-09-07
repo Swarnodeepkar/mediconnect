@@ -1,22 +1,86 @@
 .ay-summary-card { padding: 20px 22px; }
 
-.ay-role-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
-}
-.ay-role-row {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 13px 15px;
+/* ---- Disbursement progress rail ---- */
+.ay-disburse-track {
+  position: relative;
+  height: 26px;
+  border-radius: var(--radius-sm);
   background: var(--surface-sunk);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin: 14px 0 18px;
 }
-.ay-role-row__name { font-weight: 700; font-size: 13.5px; color: var(--text-heading); }
-.ay-role-row__count { font-size: 11.5px; color: var(--text-muted); }
-.ay-role-row__total { font-family: var(--heading); font-weight: 800; font-size: 16px; color: var(--brand-700); margin-top: 4px; }
+.ay-disburse-track__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--brand-200);
+  border-right: 1px solid var(--brand-400);
+  transition: width 0.3s ease;
+}
+.ay-disburse-track__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-800);
+  font-family: var(--mono, ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace);
+}
 
+/* ---- Department summary as a ledger table ---- */
+.ay-ledger { display: flex; flex-direction: column; }
+.ay-ledger__head,
+.ay-ledger__row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr 1fr 1.6fr;
+  align-items: center;
+  gap: 14px;
+}
+.ay-ledger__head {
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--border-strong);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.ay-ledger__row {
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+.ay-ledger__row:last-child { border-bottom: none; }
+.ay-ledger__name { font-weight: 700; color: var(--text-heading); }
+.ay-ledger__count,
+.ay-ledger__avg { color: var(--text-muted); font-family: var(--mono, ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace); font-size: 12.5px; }
+.ay-ledger__total-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+.ay-ledger__bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--brand-100);
+  border-right: 1px solid var(--brand-300);
+}
+.ay-ledger__total {
+  position: relative;
+  padding: 0 10px;
+  font-family: var(--mono, ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace);
+  font-weight: 700;
+  color: var(--brand-700);
+}
+
+/* ---- Payslips table card ---- */
+.ay-payslip-card .ov-card-head { margin-bottom: 4px; }
+
+/* ---- Payslip modal ---- */
 .ay-modal-head {
   display: flex;
   align-items: center;
@@ -38,10 +102,15 @@
   color: var(--text);
   border-bottom: 1px solid var(--border);
 }
+.ay-breakdown__stub {
+  height: 0;
+  border-bottom: 1.5px dashed var(--border-strong);
+  margin: 4px 0;
+}
 .ay-breakdown__row--total {
   border-bottom: none;
-  border-top: 1.5px solid var(--border-strong);
-  margin-top: 4px;
+  border-top: none;
+  margin-top: 0;
   padding-top: 12px;
   font-weight: 800;
   font-size: 16px;

@@ -13,14 +13,14 @@ export const DEPARTMENTS = [
 ];
 
 export const DOCTORS = [
-  { id: 'doc1', name: 'Dr. Ananya Rao', dept: 'General Medicine', clinicId: 'cl1', qualification: 'MBBS, MD', experience: 9, rating: 4.8, avatar: 'AR', consultFee: 500 },
-  { id: 'doc2', name: 'Dr. Karan Mehta', dept: 'Cardiology', clinicId: 'cl1', qualification: 'MBBS, DM Cardiology', experience: 14, rating: 4.9, avatar: 'KM', consultFee: 900 },
-  { id: 'doc3', name: 'Dr. Sneha Iyer', dept: 'Pediatrics', clinicId: 'cl2', qualification: 'MBBS, MD Pediatrics', experience: 7, rating: 4.7, avatar: 'SI', consultFee: 450 },
-  { id: 'doc4', name: 'Dr. Farhan Sheikh', dept: 'Orthopedics', clinicId: 'cl2', qualification: 'MBBS, MS Ortho', experience: 11, rating: 4.6, avatar: 'FS', consultFee: 700 },
-  { id: 'doc5', name: 'Dr. Priya Nair', dept: 'Gynecology', clinicId: 'cl3', qualification: 'MBBS, MS OBG', experience: 12, rating: 4.9, avatar: 'PN', consultFee: 650 },
-  { id: 'doc6', name: 'Dr. Ravi Shastri', dept: 'Dermatology', clinicId: 'cl3', qualification: 'MBBS, MD Derm', experience: 6, rating: 4.5, avatar: 'RS', consultFee: 550 },
-  { id: 'doc7', name: 'Dr. Meera Pillai', dept: 'ENT', clinicId: 'cl4', qualification: 'MBBS, MS ENT', experience: 8, rating: 4.7, avatar: 'MP', consultFee: 500 },
-  { id: 'doc8', name: 'Dr. Arjun Verma', dept: 'Dental', clinicId: 'cl4', qualification: 'BDS, MDS', experience: 10, rating: 4.8, avatar: 'AV', consultFee: 400 },
+  { id: 'doc1', name: 'Dr. Ananya Rao', dept: 'General Medicine', clinicId: 'cl1', qualification: 'MBBS, MD', experience: 9, rating: 4.8, avatar: 'AR', consultFee: 500, bio: 'Dr. Ananya Rao is a General Medicine physician focused on preventive care and the everyday health of the whole family, from common infections to long-term condition management.' },
+  { id: 'doc2', name: 'Dr. Karan Mehta', dept: 'Cardiology', clinicId: 'cl1', qualification: 'MBBS, DM Cardiology', experience: 14, rating: 4.9, avatar: 'KM', consultFee: 900, bio: 'Dr. Karan Mehta is a cardiologist with 14 years of experience in managing hypertension, coronary artery disease, and post-cardiac-event recovery, with a focus on clear, patient-friendly care plans.' },
+  { id: 'doc3', name: 'Dr. Sneha Iyer', dept: 'Pediatrics', clinicId: 'cl2', qualification: 'MBBS, MD Pediatrics', experience: 7, rating: 4.7, avatar: 'SI', consultFee: 450, bio: 'Dr. Sneha Iyer is a pediatrician dedicated to gentle, thorough care for infants and children, covering routine checkups, vaccinations, and childhood illness.' },
+  { id: 'doc4', name: 'Dr. Farhan Sheikh', dept: 'Orthopedics', clinicId: 'cl2', qualification: 'MBBS, MS Ortho', experience: 11, rating: 4.6, avatar: 'FS', consultFee: 700, bio: 'Dr. Farhan Sheikh is an orthopedic specialist treating joint pain, sports injuries, and fractures, with an emphasis on non-surgical recovery wherever possible.' },
+  { id: 'doc5', name: 'Dr. Priya Nair', dept: 'Gynecology', clinicId: 'cl3', qualification: 'MBBS, MS OBG', experience: 12, rating: 4.9, avatar: 'PN', consultFee: 650, bio: "Dr. Priya Nair is an OB-GYN with 12 years of experience in women's health, prenatal care, and family planning, known for a calm, reassuring approach with every patient." },
+  { id: 'doc6', name: 'Dr. Ravi Shastri', dept: 'Dermatology', clinicId: 'cl3', qualification: 'MBBS, MD Derm', experience: 6, rating: 4.5, avatar: 'RS', consultFee: 550, bio: 'Dr. Ravi Shastri is a dermatologist treating skin, hair, and nail conditions, from acne and allergies to long-term skincare planning.' },
+  { id: 'doc7', name: 'Dr. Meera Pillai', dept: 'ENT', clinicId: 'cl4', qualification: 'MBBS, MS ENT', experience: 8, rating: 4.7, avatar: 'MP', consultFee: 500, bio: 'Dr. Meera Pillai is an ENT specialist caring for ear, nose, and throat conditions including sinus issues, hearing concerns, and recurring infections.' },
+  { id: 'doc8', name: 'Dr. Arjun Verma', dept: 'Dental', clinicId: 'cl4', qualification: 'BDS, MDS', experience: 10, rating: 4.8, avatar: 'AV', consultFee: 400, bio: 'Dr. Arjun Verma is a dental surgeon providing routine checkups, fillings, and minor procedures with a focus on comfortable, low-anxiety visits.' },
 ];
 
 export const STAFF = [
@@ -76,31 +76,68 @@ export const LAB_TESTS = [
 ];
 
 export const HOME_VISITS = [
-  { id: 'hv1', patientId: 'p8', staffId: 'st8', clinicId: 'cl4', service: 'Post-op dressing', address: '22 Jayanagar 4th Block', scheduled: `${T} 15:00`, status: 'In Progress' },
-  { id: 'hv2', patientId: 'p6', staffId: 'st7', clinicId: 'cl3', service: 'Physiotherapy', address: '9 Koramangala 5th Block', scheduled: `${T} 16:30`, status: 'Assigned' },
-  { id: 'hv3', patientId: 'p2', staffId: 'st1', clinicId: 'cl1', service: 'Blood sample collection', address: '17 Whitefield Main Rd', scheduled: `${T} 08:30`, status: 'Completed' },
-  { id: 'hv4', patientId: 'p4', staffId: 'st4', clinicId: 'cl2', service: 'Vaccination visit', address: '3 Indiranagar 100ft Rd', scheduled: '2026-09-05 10:00', status: 'Scheduled' },
+  { id: 'hv1', patientId: 'p8', staffId: 'st8', clinicId: 'cl4', service: 'Post-op dressing', address: '22 Jayanagar 4th Block', scheduled: `${T} 15:00`, status: 'In Progress', fee: 400, billingStatus: 'Pending', notes: '', delayed: false },
+  { id: 'hv2', patientId: 'p6', staffId: 'st7', clinicId: 'cl3', service: 'Physiotherapy', address: '9 Koramangala 5th Block', scheduled: `${T} 16:30`, status: 'Assigned', fee: 350, billingStatus: 'Pending', notes: '', delayed: true },
+  { id: 'hv3', patientId: 'p2', staffId: 'st1', clinicId: 'cl1', service: 'Blood sample collection', address: '17 Whitefield Main Rd', scheduled: `${T} 08:30`, status: 'Completed', fee: 300, billingStatus: 'Paid', notes: 'Sample collected without complications. Delivered to lab within 30 minutes.', delayed: false },
+  { id: 'hv4', patientId: 'p4', staffId: 'st4', clinicId: 'cl2', service: 'Vaccination visit', address: '3 Indiranagar 100ft Rd', scheduled: '2026-09-05 10:00', status: 'Scheduled', fee: 350, billingStatus: 'Pending', notes: '', delayed: false },
+  { id: 'hv5', patientId: 'p9', staffId: 'st1', clinicId: 'cl1', service: 'Wound dressing', address: '12 Whitefield Main Rd', scheduled: `${T} 12:00`, status: 'Cancelled', fee: 0, billingStatus: 'Pending', notes: '', delayed: false, cancelReason: 'Patient unavailable at scheduled time' },
+  { id: 'hv6', patientId: 'p10', staffId: 'st4', clinicId: 'cl2', service: 'Post-natal checkup', address: '5 Indiranagar 100ft Rd', scheduled: '2026-09-03 11:00', status: 'Completed', fee: 450, billingStatus: 'Billed', notes: 'Mother and baby vitals normal. Advised follow-up in 2 weeks.', delayed: false },
 ];
 
 export const COMPLAINTS = [
-  { id: 'cp1', patientId: 'p3', clinicId: 'cl2', category: 'Billing', description: 'Overcharged for lab test package', priority: 'High', status: 'In Progress', assignedTo: 'st5', raised: '2026-09-02' },
-  { id: 'cp2', patientId: 'p6', clinicId: 'cl3', category: 'Wait Time', description: 'Waited over an hour past appointment slot', priority: 'Medium', status: 'Assigned', assignedTo: 'st10', raised: '2026-09-03' },
-  { id: 'cp3', patientId: 'p7', clinicId: 'cl4', category: 'Staff Behaviour', description: 'Receptionist was unresponsive to queries', priority: 'Medium', status: 'Submitted', assignedTo: null, raised: '2026-09-04' },
-  { id: 'cp4', patientId: 'p1', clinicId: 'cl1', category: 'Reports', description: 'Lab report delayed by 2 days', priority: 'Low', status: 'Resolved', assignedTo: 'st3', raised: '2026-08-28' },
-  { id: 'cp5', patientId: 'p9', clinicId: 'cl1', category: 'Appointment', description: 'Double booked in same slot', priority: 'High', status: 'Submitted', assignedTo: null, raised: '2026-09-04' },
+  {
+    id: 'cp1', patientId: 'p3', clinicId: 'cl2', category: 'Billing', description: 'Overcharged for lab test package', priority: 'High', status: 'In Progress', assignedTo: 'st5', raised: '2026-09-02', resolvedOn: null,
+    notes: [
+      { id: 'n1', author: 'st5', text: 'Reviewed billing history — package was charged at old rate. Refund initiated.', date: '2026-09-03' },
+    ],
+  },
+  {
+    id: 'cp2', patientId: 'p6', clinicId: 'cl3', category: 'Wait Time', description: 'Waited over an hour past appointment slot', priority: 'Medium', status: 'Assigned', assignedTo: 'st10', raised: '2026-09-03', resolvedOn: null,
+    notes: [],
+  },
+  {
+    id: 'cp3', patientId: 'p7', clinicId: 'cl4', category: 'Staff Behaviour', description: 'Receptionist was unresponsive to queries', priority: 'Medium', status: 'Submitted', assignedTo: null, raised: '2026-09-04', resolvedOn: null,
+    notes: [],
+  },
+  {
+    id: 'cp4', patientId: 'p1', clinicId: 'cl1', category: 'Reports', description: 'Lab report delayed by 2 days', priority: 'Low', status: 'Closed', assignedTo: 'st3', raised: '2026-08-28', resolvedOn: '2026-08-30',
+    notes: [
+      { id: 'n2', author: 'st3', text: 'Followed up with lab — report was released and shared with patient.', date: '2026-08-30' },
+    ],
+  },
+  {
+    id: 'cp5', patientId: 'p9', clinicId: 'cl1', category: 'Appointment', description: 'Double booked in same slot', priority: 'High', status: 'Submitted', assignedTo: null, raised: '2026-09-04', resolvedOn: null,
+    notes: [],
+  },
+  {
+    id: 'cp6', patientId: 'p8', clinicId: 'cl4', category: 'Staff Behaviour', description: 'Field nurse arrived without informing in advance', priority: 'Low', status: 'Resolved', assignedTo: 'st8', raised: '2026-08-25', resolvedOn: '2026-08-27',
+    notes: [
+      { id: 'n3', author: 'st8', text: 'Apologised to patient and confirmed advance-notice process for future visits.', date: '2026-08-27' },
+    ],
+  },
+  {
+    id: 'cp7', patientId: 'p10', clinicId: 'cl2', category: 'Billing', description: 'Payment deducted twice for the same consultation', priority: 'High', status: 'In Progress', assignedTo: 'st5', raised: '2026-08-30', resolvedOn: null,
+    notes: [
+      { id: 'n4', author: 'st5', text: 'Confirmed duplicate charge with payment gateway. Refund in process, ETA 3-5 days.', date: '2026-08-31' },
+    ],
+  },
+  {
+    id: 'cp8', patientId: 'p2', clinicId: 'cl1', category: 'Wait Time', description: 'Long queue at pharmacy counter', priority: 'Low', status: 'Resolved', assignedTo: 'st2', raised: '2026-08-20', resolvedOn: '2026-08-21',
+    notes: [],
+  },
 ];
 
 export const ATTENDANCE_TODAY = [
-  { staffId: 'st1', checkIn: '08:52', checkOut: null, status: 'Present' },
-  { staffId: 'st2', checkIn: '09:01', checkOut: null, status: 'Present' },
-  { staffId: 'st3', checkIn: '08:47', checkOut: null, status: 'Present' },
-  { staffId: 'st4', checkIn: '09:10', checkOut: null, status: 'Late' },
-  { staffId: 'st5', checkIn: null, checkOut: null, status: 'On Leave' },
-  { staffId: 'st6', checkIn: '08:55', checkOut: null, status: 'Present' },
-  { staffId: 'st7', checkIn: '08:40', checkOut: null, status: 'Present' },
-  { staffId: 'st8', checkIn: '09:15', checkOut: null, status: 'Late' },
-  { staffId: 'st9', checkIn: '09:00', checkOut: null, status: 'Present' },
-  { staffId: 'st10', checkIn: null, checkOut: null, status: 'Absent' },
+  { staffId: 'st1', checkIn: '08:52', checkOut: null, status: 'Present', verified: true },
+  { staffId: 'st2', checkIn: '09:01', checkOut: '18:05', status: 'Present', verified: true },
+  { staffId: 'st3', checkIn: '08:47', checkOut: null, status: 'Present', verified: true },
+  { staffId: 'st4', checkIn: '09:10', checkOut: null, status: 'Late', verified: true },
+  { staffId: 'st5', checkIn: null, checkOut: null, status: 'On Leave', verified: null },
+  { staffId: 'st6', checkIn: '08:55', checkOut: '17:45', status: 'Present', verified: true },
+  { staffId: 'st7', checkIn: '08:40', checkOut: null, status: 'Present', verified: true },
+  { staffId: 'st8', checkIn: '09:15', checkOut: null, status: 'Late', verified: false },
+  { staffId: 'st9', checkIn: '09:00', checkOut: '19:10', status: 'Present', verified: true },
+  { staffId: 'st10', checkIn: null, checkOut: null, status: 'Absent', verified: null },
 ];
 
 export const REVENUE_TREND = [
@@ -143,13 +180,111 @@ export const PRESCRIPTIONS = [
   },
 ];
 
+export const CONSULTATIONS = [
+  {
+    id: 'cn1', appointmentId: 'ap1', patientId: 'p1', doctorId: 'doc1', clinicId: 'cl1', date: T, status: 'Completed',
+    chiefComplaint: 'Fever and sore throat for 2 days',
+    diagnosis: 'Seasonal viral fever with mild throat congestion',
+    notes: 'Advised rest and adequate hydration for 3-4 days. Review if fever persists beyond 3 days.',
+    vitals: { bp: '118/76', pulse: 88, tempF: 100.4, weightKg: 68, spo2: 98 },
+    followUpDate: null,
+  },
+  {
+    id: 'cn2', appointmentId: 'ap2', patientId: 'p2', doctorId: 'doc2', clinicId: 'cl1', date: T, status: 'Completed',
+    chiefComplaint: 'Routine cardiology review, occasional palpitations',
+    diagnosis: 'Hypertension, moderately controlled',
+    notes: 'Adjust dosage and monitor BP twice daily at home. Reduce salt intake.',
+    vitals: { bp: '138/90', pulse: 76, tempF: 98.4, weightKg: 72, spo2: 97 },
+    followUpDate: '2026-10-04',
+  },
+  {
+    id: 'cn3', appointmentId: 'ap3', patientId: 'p9', doctorId: 'doc1', clinicId: 'cl1', date: T, status: 'In Progress',
+    chiefComplaint: 'Follow-up for previous skin rash',
+    diagnosis: '',
+    notes: 'Consultation in progress — examination underway.',
+    vitals: { bp: '120/78', pulse: 84, tempF: 98.6, weightKg: 71, spo2: 99 },
+    followUpDate: null,
+  },
+  {
+    id: 'cn4', appointmentId: 'ap4', patientId: 'p3', doctorId: 'doc4', clinicId: 'cl2', date: T, status: 'Completed',
+    chiefComplaint: 'Pain and swelling in left ankle after a fall',
+    diagnosis: 'Grade I lateral ankle sprain',
+    notes: 'RICE protocol advised — rest, ice, compression, elevation. Avoid strenuous activity for 2 weeks.',
+    vitals: { bp: '120/80', pulse: 80, tempF: 98.6, weightKg: 79, spo2: 99 },
+    followUpDate: '2026-09-11',
+  },
+  {
+    id: 'cn5', appointmentId: 'ap7', patientId: 'p5', doctorId: 'doc5', clinicId: 'cl3', date: T, status: 'Completed',
+    chiefComplaint: 'Routine antenatal checkup',
+    diagnosis: 'Antenatal visit — 28 weeks, normal progress',
+    notes: 'Growth parameters normal. Continue iron and calcium supplements.',
+    vitals: { bp: '112/70', pulse: 84, tempF: 98.2, weightKg: 64, spo2: 98 },
+    followUpDate: '2026-09-18',
+  },
+  {
+    id: 'cn6', appointmentId: 'ap9', patientId: 'p7', doctorId: 'doc7', clinicId: 'cl4', date: T, status: 'Completed',
+    chiefComplaint: 'Nasal congestion and facial pain for 5 days',
+    diagnosis: 'Acute sinusitis',
+    notes: 'Steam inhalation twice daily. Review if symptoms persist beyond a week.',
+    vitals: { bp: '124/78', pulse: 90, tempF: 99.8, weightKg: 74, spo2: 97 },
+    followUpDate: '2026-09-09',
+  },
+  {
+    id: 'cn7', appointmentId: 'ap11', patientId: 'p1', doctorId: 'doc2', clinicId: 'cl1', date: '2026-08-15', status: 'Completed',
+    chiefComplaint: 'Routine cardiac follow-up',
+    diagnosis: 'Routine cardiac follow-up — stable, well-controlled hypertension',
+    notes: 'Continue current medication. Low-sodium diet advised. Repeat lipid profile in 3 months.',
+    vitals: { bp: '124/80', pulse: 72, tempF: 98.2, weightKg: 69, spo2: 98 },
+    followUpDate: '2026-09-06',
+  },
+  {
+    id: 'cn8', patientId: 'p6', doctorId: 'doc6', clinicId: 'cl3', date: '2026-08-25', status: 'Completed',
+    chiefComplaint: 'Itchy red patch on left forearm',
+    diagnosis: 'Contact dermatitis, forearm',
+    notes: 'Avoid suspected irritant. Apply prescribed ointment twice daily.',
+    vitals: { bp: '118/76', pulse: 78, tempF: 98.4, weightKg: 58, spo2: 99 },
+    followUpDate: '2026-09-08',
+  },
+  {
+    id: 'cn9', patientId: 'p8', doctorId: 'doc8', clinicId: 'cl4', date: '2026-08-20', status: 'Completed',
+    chiefComplaint: 'Toothache, upper left molar',
+    diagnosis: 'Dental caries, upper molar — filling done',
+    notes: 'Avoid very hot or cold food for 48 hours. Maintain oral hygiene.',
+    vitals: { bp: '130/84', pulse: 82, tempF: 98.6, weightKg: 66, spo2: 98 },
+    followUpDate: null,
+  },
+  {
+    id: 'cn10', patientId: 'p4', doctorId: 'doc3', clinicId: 'cl2', date: '2026-08-27', status: 'Completed',
+    chiefComplaint: 'Cough and cold for 3 days',
+    diagnosis: 'Upper respiratory tract infection, mild',
+    notes: 'Symptomatic management. Plenty of fluids and rest.',
+    vitals: { bp: '98/62', pulse: 110, tempF: 100.2, weightKg: 19, spo2: 98 },
+    followUpDate: '2026-09-10',
+  },
+];
+
 export const LEAVE_REQUESTS = [
   { id: 'lv1', staffId: 'st1', type: 'Sick Leave', from: '2026-08-10', to: '2026-08-11', days: 2, status: 'Approved', reason: 'Fever and body ache', appliedOn: '2026-08-09' },
   { id: 'lv2', staffId: 'st1', type: 'Casual Leave', from: '2026-09-15', to: '2026-09-15', days: 1, status: 'Pending', reason: 'Personal work', appliedOn: '2026-09-03' },
   { id: 'lv3', staffId: 'st5', type: 'Sick Leave', from: '2026-09-04', to: '2026-09-06', days: 3, status: 'Approved', reason: 'Viral fever', appliedOn: '2026-09-03' },
+  { id: 'lv4', staffId: 'st9', type: 'Casual Leave', from: '2026-09-20', to: '2026-09-20', days: 1, status: 'Pending', reason: 'Family function', appliedOn: '2026-09-04' },
+  { id: 'lv5', staffId: 'st4', type: 'Sick Leave', from: '2026-08-05', to: '2026-08-06', days: 2, status: 'Rejected', reason: 'Insufficient leave balance', appliedOn: '2026-08-04' },
+  { id: 'lv6', staffId: 'st7', type: 'Earned Leave', from: '2026-09-25', to: '2026-09-27', days: 3, status: 'Pending', reason: 'Family travel', appliedOn: '2026-09-02' },
+  { id: 'lv7', staffId: 'st3', type: 'Casual Leave', from: '2026-08-22', to: '2026-08-22', days: 1, status: 'Approved', reason: 'Personal work', appliedOn: '2026-08-20' },
 ];
 
-export const LEAVE_BALANCE = { st1: { casual: 8, sick: 6, earned: 12 } };
+export const LEAVE_BALANCE = {
+  st1: { casual: 8, sick: 6, earned: 12 },
+  st2: { casual: 10, sick: 8, earned: 15 },
+  st3: { casual: 7, sick: 5, earned: 10 },
+  st4: { casual: 4, sick: 4, earned: 8 },
+  st5: { casual: 9, sick: 3, earned: 12 },
+  st6: { casual: 12, sick: 9, earned: 18 },
+  st7: { casual: 6, sick: 7, earned: 11 },
+  st8: { casual: 8, sick: 6, earned: 9 },
+  st9: { casual: 11, sick: 5, earned: 14 },
+  st10: { casual: 9, sick: 6, earned: 10 },
+};
 
 export const TASKS = [
   { id: 'tk1', staffId: 'st1', clinicId: 'cl1', title: 'Restock consultation room 2 supplies', priority: 'Medium', status: 'Pending', dueDate: T },

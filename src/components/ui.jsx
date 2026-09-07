@@ -1,8 +1,51 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Children, isValidElement } from 'react';
-import { ChevronDown, Check } from 'lucide-react';
+import { ChevronDown, Check, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from 'lucide-react';
 import { initials } from '../lib/format.js';
 import './ui.css';
+
+const PAGE_SIZE_OPTIONS = [5, 10, 20, 50];
+
+export function usePagination(rows, initialPageSize = 10) {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(initialPageSize);
+  const pageCount = Math.max(1, Math.ceil(rows.length / pageSize));
+
+  useEffect(() => { setPage(1); }, [rows.length, pageSize]);
+  useEffect(() => { if (page > pageCount) setPage(pageCount); }, [page, pageCount]);
+
+  const pagedRows = rows.slice((page - 1) * pageSize, page * pageSize);
+  return { page, setPage, pageSize, setPageSize, pageCount, pagedRows, totalCount: rows.length };
+}
+
+export function Pagination({ page, setPage, pageSize, setPageSize, pageCount, totalCount, pageSizeOptions = PAGE_SIZE_OPTIONS }) {
+  if (totalCount === 0) return null;
+  return (
+    <div className="ap-pagination">
+      <span className="ap-pagination__info">
+        Showing <b>{(page - 1) * pageSize + 1}</b> to <b>{Math.min(page * pageSize, totalCount)}</b> of <b>{totalCount}</b> records
+      </span>
+      <div className="ap-pagination__controls">
+        <Select className="ap-pagination__size" value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+          {pageSizeOptions.map((n) => <option key={n} value={n}>{n} per page</option>)}
+        </Select>
+        <button className="ap-pagination__btn" onClick={() => setPage(1)} disabled={page <= 1}>
+          <ChevronsLeft size={15} strokeWidth={2.2} />
+        </button>
+        <button className="ap-pagination__btn" onClick={() => setPage((p) => p - 1)} disabled={page <= 1}>
+          <ChevronLeft size={15} strokeWidth={2.2} />
+        </button>
+        <span className="ap-pagination__page">{page}</span>
+        <button className="ap-pagination__btn" onClick={() => setPage((p) => p + 1)} disabled={page >= pageCount}>
+          <ChevronRight size={15} strokeWidth={2.2} />
+        </button>
+        <button className="ap-pagination__btn" onClick={() => setPage(pageCount)} disabled={page >= pageCount}>
+          <ChevronsRight size={15} strokeWidth={2.2} />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function Card({ children, className = '', ...rest }) {
   return (

@@ -1,0 +1,79 @@
+/* Vitals */
+.cl-vitals { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.cl-vitals--compact { gap: 10px; }
+.cl-vital {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.cl-vitals--compact .cl-vital { font-size: 12px; color: var(--text-muted); }
+.cl-vital svg { color: var(--brand-500); flex-shrink: 0; }
+
+.cl-vitals-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 12px;
+}
+@media (max-width: 520px) {
+  .cl-vitals-form { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Notes / diagnosis */
+.cl-diagnosis { font-weight: 700; color: var(--text-heading); margin-bottom: 4px; }
+.cl-notes { color: var(--text-muted); }
+
+.cl-list-item--linked { display: flex; align-items: flex-start; gap: 10px; }
+.cl-list-item__icon {
+  width: 26px; height: 26px;
+  border-radius: var(--radius-sm);
+  background: var(--brand-50);
+  color: var(--brand-600);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Follow-up */
+.cl-followup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+.cl-followup-badge--overdue { background: var(--danger-50); color: var(--danger-600); }
+.cl-followup-badge--upcoming { background: var(--brand-50); color: var(--brand-600); }
+
+.cl-followup-strip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--brand-50);
+  color: var(--brand-700);
+  border-radius: var(--radius-md);
+  padding: 11px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.cl-followup-strip.is-overdue { background: var(--danger-50); color: var(--danger-700, var(--danger-600)); }
+
+/* Lab workflow stepper */
+.cl-workflow { display: flex; gap: 6px; margin-bottom: 4px; }
+.cl-workflow__step {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.cl-workflow__step.is-done { border-color: var(--brand-500); background: var(--brand-50); color: var(--brand-700); }

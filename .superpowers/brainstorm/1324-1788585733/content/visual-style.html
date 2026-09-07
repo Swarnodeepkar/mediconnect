@@ -1,0 +1,152 @@
+<h2>Which direction feels "elegant" to you?</h2>
+<p class="subtitle">Each mockup is a mini slice of the same dashboard (sidebar nav + stat cards + table row) restyled four ways. Click the one that's closest to what you want — we'll refine from there.</p>
+
+<style>
+  .mc-mock { border-radius: 14px; overflow: hidden; font-family: 'Segoe UI', system-ui, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
+  .mc-mock-inner { display: flex; height: 230px; }
+  .mc-mock-side { width: 72px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 16px 0; }
+  .mc-mock-dot { width: 30px; height: 30px; border-radius: 9px; }
+  .mc-mock-main { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .mc-mock-stats { display: flex; gap: 8px; }
+  .mc-mock-stat { flex: 1; border-radius: 10px; padding: 10px; }
+  .mc-mock-stat .n { font-size: 18px; font-weight: 800; }
+  .mc-mock-stat .l { font-size: 10px; opacity: 0.7; margin-top: 2px; }
+  .mc-mock-row { border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+  .mc-mock-pill { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+</style>
+
+<div class="cards">
+
+  <div class="card" data-choice="refined-clinical" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mc-mock">
+        <div class="mc-mock-inner" style="background:#0d1a30;">
+          <div class="mc-mock-side" style="background:#0a1224;">
+            <div class="mc-mock-dot" style="background:#2f6fed;"></div>
+            <div class="mc-mock-dot" style="background:#1a2e50;"></div>
+            <div class="mc-mock-dot" style="background:#1a2e50;"></div>
+          </div>
+          <div class="mc-mock-main" style="background:#f6f8fb;">
+            <div style="font-family:Georgia,serif; font-weight:700; color:#0f172a; font-size:15px;">Overview</div>
+            <div class="mc-mock-stats">
+              <div class="mc-mock-stat" style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.06);"><div class="n" style="color:#0f172a;">128</div><div class="l" style="color:#64748b;">Patients today</div></div>
+              <div class="mc-mock-stat" style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.06);"><div class="n" style="color:#2358c9;">96%</div><div class="l" style="color:#64748b;">On time</div></div>
+            </div>
+            <div class="mc-mock-row" style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <span style="color:#334155;">S. Rao — Cardiology</span>
+              <span class="mc-mock-pill" style="background:#eafbf1; color:#15945c;">Confirmed</span>
+            </div>
+            <div class="mc-mock-row" style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+              <span style="color:#334155;">A. Menon — Follow-up</span>
+              <span class="mc-mock-pill" style="background:#fff8e8; color:#b9800f;">Waiting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Refined Clinical</h3>
+      <p>Today's blue/navy, elevated: more whitespace, softer shadows, a serif accent on headings. Familiar, trustworthy, quietly premium.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="warm-human" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mc-mock">
+        <div class="mc-mock-inner" style="background:#fffaf3;">
+          <div class="mc-mock-side" style="background:#fff3e6;">
+            <div class="mc-mock-dot" style="background:#e08a3c;"></div>
+            <div class="mc-mock-dot" style="background:#f1dcc4;"></div>
+            <div class="mc-mock-dot" style="background:#f1dcc4;"></div>
+          </div>
+          <div class="mc-mock-main" style="background:#fffaf3;">
+            <div style="font-weight:800; color:#5b3a1e; font-size:15px;">Overview</div>
+            <div class="mc-mock-stats">
+              <div class="mc-mock-stat" style="background:#fff; border:1px solid #f1e2d1;"><div class="n" style="color:#5b3a1e;">128</div><div class="l" style="color:#a3805c;">Patients today</div></div>
+              <div class="mc-mock-stat" style="background:#fff; border:1px solid #f1e2d1;"><div class="n" style="color:#e08a3c;">96%</div><div class="l" style="color:#a3805c;">On time</div></div>
+            </div>
+            <div class="mc-mock-row" style="background:#fff; border:1px solid #f1e2d1;">
+              <span style="color:#5b3a1e;">S. Rao — Cardiology</span>
+              <span class="mc-mock-pill" style="background:#e9f5ea; color:#4a8f52;">Confirmed</span>
+            </div>
+            <div class="mc-mock-row" style="background:#fff; border:1px solid #f1e2d1;">
+              <span style="color:#5b3a1e;">A. Menon — Follow-up</span>
+              <span class="mc-mock-pill" style="background:#fdeee0; color:#c17a2e;">Waiting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Warm &amp; Human</h3>
+      <p>Cream surfaces, terracotta accent, rounded everything. Softer and more approachable — less "hospital," more boutique clinic.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="editorial-premium" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mc-mock">
+        <div class="mc-mock-inner" style="background:#0b0f14;">
+          <div class="mc-mock-side" style="background:#05070a;">
+            <div class="mc-mock-dot" style="background:#c9a24d;"></div>
+            <div class="mc-mock-dot" style="background:#1c232c;"></div>
+            <div class="mc-mock-dot" style="background:#1c232c;"></div>
+          </div>
+          <div class="mc-mock-main" style="background:#12161d;">
+            <div style="font-family:Georgia,serif; font-weight:700; color:#f2ede1; font-size:15px;">Overview</div>
+            <div class="mc-mock-stats">
+              <div class="mc-mock-stat" style="background:#181d26; border:1px solid #262d38;"><div class="n" style="color:#f2ede1;">128</div><div class="l" style="color:#8b93a1;">Patients today</div></div>
+              <div class="mc-mock-stat" style="background:#181d26; border:1px solid #262d38;"><div class="n" style="color:#c9a24d;">96%</div><div class="l" style="color:#8b93a1;">On time</div></div>
+            </div>
+            <div class="mc-mock-row" style="background:#181d26; border:1px solid #262d38;">
+              <span style="color:#dfe3ea;">S. Rao — Cardiology</span>
+              <span class="mc-mock-pill" style="background:#1f2e22; color:#5fbf7a;">Confirmed</span>
+            </div>
+            <div class="mc-mock-row" style="background:#181d26; border:1px solid #262d38;">
+              <span style="color:#dfe3ea;">A. Menon — Follow-up</span>
+              <span class="mc-mock-pill" style="background:#332a17; color:#c9a24d;">Waiting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Editorial Premium</h3>
+      <p>Near-black surfaces, gold accent, serif headings. High-contrast and boutique — feels like a private concierge health service.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="minimal-mono" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mc-mock">
+        <div class="mc-mock-inner" style="background:#ffffff;">
+          <div class="mc-mock-side" style="background:#ffffff; border-right:1px solid #ececec;">
+            <div class="mc-mock-dot" style="background:#111111; border-radius:6px;"></div>
+            <div class="mc-mock-dot" style="background:#f0f0f0; border-radius:6px;"></div>
+            <div class="mc-mock-dot" style="background:#f0f0f0; border-radius:6px;"></div>
+          </div>
+          <div class="mc-mock-main" style="background:#ffffff;">
+            <div style="font-weight:800; color:#111; font-size:15px; letter-spacing:-0.02em;">Overview</div>
+            <div class="mc-mock-stats">
+              <div class="mc-mock-stat" style="background:#fafafa;"><div class="n" style="color:#111;">128</div><div class="l" style="color:#999;">Patients today</div></div>
+              <div class="mc-mock-stat" style="background:#fafafa;"><div class="n" style="color:#111;">96%</div><div class="l" style="color:#999;">On time</div></div>
+            </div>
+            <div class="mc-mock-row" style="background:#fafafa;">
+              <span style="color:#222;">S. Rao — Cardiology</span>
+              <span class="mc-mock-pill" style="background:#111; color:#fff;">Confirmed</span>
+            </div>
+            <div class="mc-mock-row" style="background:#fafafa;">
+              <span style="color:#222;">A. Menon — Follow-up</span>
+              <span class="mc-mock-pill" style="background:#eee; color:#555;">Waiting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Minimal Mono</h3>
+      <p>Near-monochrome, one accent used sparingly (here: solid black), lots of negative space. Swiss/editorial-app feel — very clean, very quiet.</p>
+    </div>
+  </div>
+
+</div>

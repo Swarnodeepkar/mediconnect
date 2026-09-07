@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useClinic, filterByClinic } from '../../context/ClinicContext.jsx';
 import { useCollection, db } from '../../data/store.js';
-import { Card, Table, StatusBadge, Avatar, Button, Modal, Field, Select, Input } from '../../components/ui.jsx';
+import { Card, Table, StatusBadge, Avatar, Button, Modal, Field, Select, Input, usePagination, Pagination } from '../../components/ui.jsx';
 import { formatCurrency, formatTime12, formatDate } from '../../lib/format.js';
 import './AdminPage.css';
 
@@ -32,6 +32,8 @@ export default function AdminAppointments() {
       .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time))
       .reverse();
   }, [scoped, status, search, patients, doctors]);
+
+  const pagination = usePagination(rows);
 
   const patientById = (id) => patients.find((p) => p.id === id);
   const doctorById = (id) => doctors.find((d) => d.id === id);
@@ -106,8 +108,10 @@ export default function AdminAppointments() {
             { key: 'fee', header: 'Fee', render: (r) => formatCurrency(r.fee) },
             { key: 'status', header: 'Status', render: (r) => <StatusBadge status={r.status} /> },
           ]}
-          rows={rows}
+          rows={pagination.pagedRows}
         />
+
+        <Pagination {...pagination} />
       </Card>
 
       <BookAppointmentModal open={bookOpen} onClose={() => setBookOpen(false)} clinics={clinics} doctors={doctors} patients={patients} defaultClinicId={clinicId} />

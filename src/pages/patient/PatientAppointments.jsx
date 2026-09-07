@@ -39,13 +39,14 @@ export default function PatientAppointments() {
 
   return (
     <div className="pa">
-      <SegmentedControl
-        value={tab}
-        onChange={setTab}
-        options={[{ value: 'upcoming', label: `Upcoming (${upcoming.length})` }, { value: 'past', label: 'Past' }]}
-      />
-
-      <button className="pa-book-cta" onClick={() => setBookOpen(true)}>+ Book New Appointment</button>
+      <div className="pa-toolbar">
+        <SegmentedControl
+          value={tab}
+          onChange={setTab}
+          options={[{ value: 'upcoming', label: `Upcoming (${upcoming.length})` }, { value: 'past', label: 'Past' }]}
+        />
+        <Button size="sm" onClick={() => setBookOpen(true)}>+ Book New Appointment</Button>
+      </div>
 
       <div className="pa-list">
         {list.length === 0 && (

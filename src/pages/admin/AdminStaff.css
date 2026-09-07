@@ -1,0 +1,64 @@
+.st-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.st-time svg { flex-shrink: 0; color: var(--ink-400); }
+.st-verify--ok { color: var(--success-500) !important; }
+.st-verify--warn { color: var(--danger-500) !important; }
+
+.st-onduty { font-size: 12.5px; font-weight: 600; color: var(--brand-600); }
+
+.st-hours { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
+.st-hours svg { color: var(--ink-400); }
+
+.st-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.st-tag--warn { background: var(--warn-50); color: var(--warn-600); }
+.st-tag--brand { background: var(--brand-50); color: var(--brand-600); }
+
+.st-today-block { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+
+.st-balance-row { display: flex; gap: 10px; margin-bottom: 16px; }
+.st-balance-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  background: var(--surface-sunk);
+  border-radius: var(--radius-md);
+}
+.st-balance-chip__v { font-family: var(--heading); font-weight: 800; font-size: 19px; color: var(--text-heading); }
+.st-balance-chip__l { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+.st-leave-actions { display: flex; gap: 6px; }
+.st-leave-btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.st-leave-btn--approve { color: var(--success-600); }
+.st-leave-btn--approve:hover { border-color: var(--success-500); background: var(--success-50); }
+.st-leave-btn--reject { color: var(--danger-600); }
+.st-leave-btn--reject:hover { border-color: var(--danger-500); background: var(--danger-50); }

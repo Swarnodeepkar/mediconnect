@@ -1,11 +1,12 @@
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { Home, CheckSquare, Truck, Palmtree, User, ChevronLeft, Power } from 'lucide-react';
+import { useState } from 'react';
+import { Home, CheckSquare, Truck, Palmtree, User, ShieldCheck, Bell, Power, Menu } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useCollection } from '../../data/store.js';
 import { Avatar } from '../../components/ui.jsx';
 import '../patient/PatientLayout.css';
 
-const TABS = [
+const NAV = [
   { to: '/staff', label: 'Home', icon: Home, end: true },
   { to: '/staff/tasks', label: 'Tasks', icon: CheckSquare },
   { to: '/staff/visits', label: 'Visits', icon: Truck },
@@ -18,58 +19,77 @@ export default function StaffLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const tasks = useCollection('TASKS');
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const pendingTasks = tasks.filter((t) => t.staffId === user.staffId && t.status !== 'Completed').length;
 
-  const isHome = location.pathname === '/staff';
+  const activeLabel = [...NAV].reverse().find((t) => location.pathname === t.to || (!t.end && location.pathname.startsWith(t.to)))?.label || 'CarePlus';
 
   return (
-    <div className="pl-page">
-      <div className="pl-phone">
-        <div className="pl-notch" />
-        <div className="pl-screen">
-          <header className="pl-topbar">
-            {isHome ? (
-              <>
-                <div className="pl-greet">
-                  <div className="pl-greet__hi">Hi, {user.name.split(' ')[0]}</div>
-                  <div className="pl-greet__sub">{user.title} &middot; On duty</div>
-                </div>
-                <button className="pl-avatar-btn" onClick={() => navigate('/staff/profile')}>
-                  <Avatar name={user.name} size={38} />
-                </button>
-              </>
-            ) : (
-              <>
-                <button className="pl-back" onClick={() => navigate(-1)}><ChevronLeft size={17} strokeWidth={2.3} /></button>
-                <div className="pl-title">{TABS.find((t) => location.pathname.startsWith(t.to) && t.to !== '/staff')?.label || 'CarePlus'}</div>
-                <span className="pl-notif-dot">{pendingTasks > 0 && <span className="pl-dot" />}</span>
-              </>
-            )}
-          </header>
-
-          <main className="pl-content">
-            <Outlet />
-          </main>
-
-          <nav className="pl-tabbar">
-            {TABS.map((t) => (
-              <NavLink
-                key={t.to}
-                to={t.to}
-                end={t.end}
-                className={({ isActive }) => `pl-tab ${isActive ? 'is-active' : ''}`}
-              >
-                <span className="pl-tab__icon"><t.icon size={19} strokeWidth={2} /></span>
-                <span className="pl-tab__label">{t.label}</span>
-              </NavLink>
-            ))}
-          </nav>
+    <div className="pw-shell">
+      {mobileOpen && <div className="pw-scrim" onClick={() => setMobileOpen(false)} />}
+      <aside className={`pw-sidebar ${mobileOpen ? 'is-open' : ''}`}>
+        <div className="pw-brand">
+          <span className="pw-brand__mark"><ShieldCheck size={18} strokeWidth={2.4} /></span>
+          <div>
+            <div className="pw-brand__name">CarePlus</div>
+            <div className="pw-brand__tag">Staff Workspace</div>
+          </div>
         </div>
-      </div>
 
-      <button className="pl-exit" onClick={() => { logout(); navigate('/login'); }}>
-        <Power size={13} strokeWidth={2.2} /> Switch role
-      </button>
+        <nav className="pw-nav">
+          {NAV.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) => `pw-nav__item ${isActive ? 'is-active' : ''}`}
+              onClick={() => setMobileOpen(false)}
+            >
+              <item.icon className="pw-nav__icon" size={17} strokeWidth={2} />
+              <span>{item.label}</span>
+              {item.to === '/staff/tasks' && pendingTasks > 0 && (
+                <span className="pw-icon-btn__badge" style={{ position: 'static', marginLeft: 'auto', border: 'none' }}>{pendingTasks}</span>
+              )}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="pw-sidebar__footer">
+          <div className="pw-user">
+            <Avatar name={user.name} size={34} />
+            <div className="pw-user__body">
+              <div className="pw-user__name">{user.name}</div>
+              <div className="pw-user__role">{user.title} &middot; On duty</div>
+            </div>
+          </div>
+          <button className="pw-logout" onClick={() => { logout(); navigate('/login'); }} title="Switch role">
+            <Power size={15} strokeWidth={2.2} />
+          </button>
+        </div>
+      </aside>
+
+      <div className="pw-main">
+        <header className="pw-topbar">
+          <button className="pw-hamburger" onClick={() => setMobileOpen((v) => !v)}>
+            <Menu size={19} strokeWidth={2.2} />
+          </button>
+          <div className="pw-title">{activeLabel}</div>
+          <div className="pw-topbar__right">
+            <button className="pw-icon-btn" title="Tasks" onClick={() => navigate('/staff/tasks')}>
+              <Bell size={17} strokeWidth={2.1} />
+              {pendingTasks > 0 && <span className="pw-icon-btn__badge">{pendingTasks}</span>}
+            </button>
+            <button className="pw-profile" onClick={() => navigate('/staff/profile')}>
+              <Avatar name={user.name} size={32} />
+            </button>
+          </div>
+        </header>
+
+        <main className="pw-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
