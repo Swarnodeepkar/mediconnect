@@ -1,0 +1,71 @@
+.as-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .as-grid { grid-template-columns: 1fr; }
+}
+
+.as-side-col { display: flex; flex-direction: column; gap: 18px; }
+
+.as-card { padding: 20px 22px; }
+.as-card__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+  color: var(--brand-600);
+}
+.as-card__head h3 { font-size: 15px; color: var(--text-heading); }
+.as-card__label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 10px; }
+
+.as-clinic-list { display: flex; flex-direction: column; gap: 8px; }
+.as-clinic-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  background: var(--surface-sunk);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+.as-clinic-row__dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.as-clinic-row__name { flex: 1; font-weight: 600; color: var(--text-heading); }
+.as-clinic-row__code { font-size: 11.5px; font-weight: 700; color: var(--text-muted); }
+
+.as-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+}
+.as-toggle-row:last-of-type { border-bottom: none; padding-bottom: 4px; }
+.as-toggle-row__text { display: flex; flex-direction: column; gap: 2px; }
+.as-toggle-row__label { font-size: 13.5px; font-weight: 600; color: var(--text-heading); }
+.as-toggle-row__hint { font-size: 11.5px; color: var(--text-muted); max-width: 320px; }
+
+.as-switch {
+  width: 40px; height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--ink-200);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+.as-switch.is-on { background: var(--brand-500); }
+.as-switch__knob {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.15s ease;
+}
+.as-switch.is-on .as-switch__knob { transform: translateX(18px); }

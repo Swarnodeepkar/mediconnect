@@ -1,0 +1,274 @@
+.al-shell {
+  display: flex;
+  min-height: 100svh;
+  background: var(--surface-sunk);
+}
+
+/* Sidebar */
+.al-sidebar {
+  width: 254px;
+  flex-shrink: 0;
+  background: linear-gradient(185deg, var(--navy-950), var(--navy-900) 60%, var(--navy-800));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 12px;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+
+.al-brand { display: flex; align-items: center; gap: 10px; padding: 8px 8px 22px; }
+.al-brand__mark {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--brand-400), var(--brand-600));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(47, 111, 237, 0.4);
+}
+.al-brand__name { font-family: var(--heading); font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+.al-brand__tag { font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 1px; }
+
+.al-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.al-nav::-webkit-scrollbar { width: 6px; }
+.al-nav::-webkit-scrollbar-track { background: transparent; }
+.al-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-full);
+}
+.al-nav::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+.al-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.62);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+.al-nav__item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.al-nav__item.is-active {
+  background: var(--brand-500);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(47, 111, 237, 0.35);
+}
+.al-nav__icon { flex-shrink: 0; opacity: 0.9; }
+.al-nav__pill {
+  margin-left: auto;
+  background: var(--danger-500);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  min-width: 16px;
+  text-align: center;
+}
+
+.al-sidebar__footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 12px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.al-user { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.al-user__body { min-width: 0; }
+.al-user__name { font-size: 12.5px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.al-user__role { font-size: 11px; color: rgba(255,255,255,0.45); }
+.al-logout {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.al-logout:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* Main */
+.al-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.al-topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 26px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.al-hamburger {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink-600);
+  align-items: center;
+}
+
+.al-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 45;
+}
+
+/* Clinic dropdown */
+.al-clinic-select { position: relative; display: flex; align-items: center; gap: 10px; }
+.al-clinic-select__label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-right: 10px;
+  border-right: 1px solid var(--border);
+}
+.al-clinic-select__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-heading);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  min-width: 160px;
+  justify-content: space-between;
+}
+.al-clinic-select__btn:hover { border-color: var(--brand-400); }
+.al-clinic-select__btn svg { color: var(--ink-400); flex-shrink: 0; }
+
+.al-clinic-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.al-clinic-menu button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+.al-clinic-menu button:hover { background: var(--surface-sunk); }
+.al-clinic-menu button.is-active { background: var(--brand-50); color: var(--brand-700); font-weight: 700; }
+.al-clinic-menu__dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.al-topbar__right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+.al-date-range {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.al-date-range svg { color: var(--ink-400); flex-shrink: 0; }
+
+.al-icon-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-600);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.al-icon-btn:hover { background: var(--surface-sunk); border-color: var(--border-strong); }
+.al-icon-btn__badge {
+  position: absolute;
+  top: -5px; right: -5px;
+  background: var(--danger-500);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--surface);
+}
+
+.al-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px 6px 4px 4px;
+  border-radius: var(--radius-md);
+  margin-left: 4px;
+}
+.al-profile:hover { background: var(--surface-sunk); }
+.al-profile__body { text-align: left; }
+.al-profile__name { font-size: 13px; font-weight: 700; color: var(--text-heading); line-height: 1.3; }
+.al-profile__role { font-size: 11.5px; color: var(--text-muted); }
+
+.al-content { flex: 1; padding: 24px 26px 40px; }
+
+@media (max-width: 980px) {
+  .al-sidebar {
+    position: fixed;
+    left: 0; top: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: var(--shadow-lg);
+  }
+  .al-sidebar.is-open { transform: translateX(0); }
+  .al-scrim { display: block; }
+  .al-hamburger { display: flex; }
+  .al-content { padding: 16px 16px 32px; }
+  .al-topbar { padding: 10px 16px; gap: 12px; }
+  .al-clinic-select__label { display: none; }
+  .al-date-range { display: none; }
+  .al-profile__body { display: none; }
+}
